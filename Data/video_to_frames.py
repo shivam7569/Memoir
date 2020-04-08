@@ -164,7 +164,7 @@ else:
         types_of_videos.append(w_d)
 
 for v_t in types_of_videos:
-    # v_t: Looping over the types of videos to make frame of (Real or/and Animated).
+    # v_t: Looping over the types of videos to make frame of (entered by the user).
     for sr in sorted(os.listdir("./Memoir_Videos/" + v_t)):
         # sr: Looping over series of each type of videos.
         try:
