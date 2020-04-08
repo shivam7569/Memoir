@@ -148,7 +148,7 @@ threshold = int(
 types_of_videos = []
 
 if which_data == "All":
-    # Make frame for all the videos.
+    # Make frames for all the videos.
     types_of_videos = sorted(os.listdir("../Memoir_Videos"))
 else:
     # Make frame for only the type entered by the user.
