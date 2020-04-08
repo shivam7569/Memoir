@@ -136,14 +136,22 @@ def process(vid_type, series, threshold):
 
 
 which_data = input(
-    "Enter the type of data to generate frame for? [default: All] \n"
+    "Enter the type of data to generate frame for, comma separated [no space] (Leave empty for default)? [default: All] \n"
     # Asking for the type of video to make frames of. For now only Real and Animated videos are considered.
 )
-threshold = int(
-    input(
-        'Enter the number of frames to make for a particular series. \n'
-        # Asking for threshold: Number of frames to make for a series.
-    ))
+if not which_data:
+    # Setting the default value.
+    which_data = 'All'
+
+try:
+    threshold = int(
+        input(
+            'Enter the number of frames to make for a particular series (leave empty for default). [default: 50,000] \n'
+            # Asking for threshold: Number of frames to make for a series.
+        ))
+    # If no value is entered for threshold, then it will be equal to default value of 50000
+except:
+    threshold = 50000
 
 types_of_videos = []
 
@@ -152,7 +160,8 @@ if which_data == "All":
     types_of_videos = sorted(os.listdir("../Memoir_Videos"))
 else:
     # Make frame for only the type entered by the user.
-    types_of_videos.append(which_data)
+    for w_d in which_data.split(','):
+        types_of_videos.append(w_d)
 
 for v_t in types_of_videos:
     # v_t: Looping over the types of videos to make frame of (Real or/and Animated).
@@ -163,4 +172,4 @@ for v_t in types_of_videos:
         # Checking if the path is broken or not. If broken, the loop will skip that path.
         except OSError:
             continue
-        process(v_t, sr, threshold)
+        # process(v_t, sr, threshold)
