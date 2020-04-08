@@ -28,7 +28,7 @@ def process(vid_type, series, threshold):
 
     '''
 
-    videos = os.listdir("../Memoir_Videos/" + vid_type +
+    videos = os.listdir("./Memoir_Videos/" + vid_type +
                         "/" + series + "/Video/"
                         # To take into consideration that there might be more than 1 video for a series.
                         )
@@ -40,7 +40,7 @@ def process(vid_type, series, threshold):
         # Looping over the videos of a particular series
 
         cam = cv2.VideoCapture(
-            "../Memoir_Videos/" + vid_type + "/" + series + "/Video/" + vid
+            "./Memoir_Videos/" + vid_type + "/" + series + "/Video/" + vid
             # Reading a video using open-cv
         )
 
@@ -157,7 +157,7 @@ types_of_videos = []
 
 if which_data == "All":
     # Make frames for all the videos.
-    types_of_videos = sorted(os.listdir("../Memoir_Videos"))
+    types_of_videos = sorted(os.listdir("./Memoir_Videos"))
 else:
     # Make frame for only the type entered by the user.
     for w_d in which_data.split(','):
@@ -165,11 +165,11 @@ else:
 
 for v_t in types_of_videos:
     # v_t: Looping over the types of videos to make frame of (Real or/and Animated).
-    for sr in sorted(os.listdir("../Memoir_Videos/" + v_t)):
+    for sr in sorted(os.listdir("./Memoir_Videos/" + v_t)):
         # sr: Looping over series of each type of videos.
         try:
-            os.listdir("../Memoir_Videos/" + v_t + "/" + sr + "/Video")
+            os.listdir("./Memoir_Videos/" + v_t + "/" + sr + "/Video")
         # Checking if the path is broken or not. If broken, the loop will skip that path.
         except OSError:
             continue
-        # process(v_t, sr, threshold)
+        process(v_t, sr, threshold)
