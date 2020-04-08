@@ -28,7 +28,7 @@ def process(vid_type, series, threshold):
 
     '''
 
-    videos = os.listdir("../Memoir_Videos/" + vid_type +
+    videos = os.listdir("./Memoir_Videos/" + vid_type +
                         "/" + series + "/Video/"
                         # To take into consideration that there might be more than 1 video for a series.
                         )
@@ -40,7 +40,7 @@ def process(vid_type, series, threshold):
         # Looping over the videos of a particular series
 
         cam = cv2.VideoCapture(
-            "../Memoir_Videos/" + vid_type + "/" + series + "/Video/" + vid
+            "./Memoir_Videos/" + vid_type + "/" + series + "/Video/" + vid
             # Reading a video using open-cv
         )
 
@@ -136,30 +136,39 @@ def process(vid_type, series, threshold):
 
 
 which_data = input(
-    "Enter the type of data to generate frame for? [default: All] \n"
+    "Enter the type of data to generate frame for, comma separated [no space] (Leave empty for default)? [default: All] \n"
     # Asking for the type of video to make frames of. For now only Real and Animated videos are considered.
 )
-threshold = int(
-    input(
-        'Enter the number of frames to make for a particular series. \n'
-        # Asking for threshold: Number of frames to make for a series.
-    ))
+if not which_data:
+    # Setting the default value.
+    which_data = 'All'
+
+try:
+    threshold = int(
+        input(
+            'Enter the number of frames to make for a particular series (leave empty for default). [default: 50,000] \n'
+            # Asking for threshold: Number of frames to make for a series.
+        ))
+    # If no value is entered for threshold, then it will be equal to default value of 50000
+except:
+    threshold = 50000
 
 types_of_videos = []
 
 if which_data == "All":
     # Make frames for all the videos.
-    types_of_videos = sorted(os.listdir("../Memoir_Videos"))
+    types_of_videos = sorted(os.listdir("./Memoir_Videos"))
 else:
     # Make frame for only the type entered by the user.
-    types_of_videos.append(which_data)
+    for w_d in which_data.split(','):
+        types_of_videos.append(w_d)
 
 for v_t in types_of_videos:
-    # v_t: Looping over the types of videos to make frame of (Real or/and Animated).
-    for sr in sorted(os.listdir("../Memoir_Videos/" + v_t)):
+    # v_t: Looping over the types of videos to make frame of (entered by the user).
+    for sr in sorted(os.listdir("./Memoir_Videos/" + v_t)):
         # sr: Looping over series of each type of videos.
         try:
-            os.listdir("../Memoir_Videos/" + v_t + "/" + sr + "/Video")
+            os.listdir("./Memoir_Videos/" + v_t + "/" + sr + "/Video")
         # Checking if the path is broken or not. If broken, the loop will skip that path.
         except OSError:
             continue
