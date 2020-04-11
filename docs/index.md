@@ -25,7 +25,7 @@
 
 ## Generating Batch of Images for Training
 
-### `batch_processor.py`
+### `batch_generator.py`
 
 ***Returns a batch of image***
 
@@ -36,15 +36,15 @@
 
         - returns the names of the images for the given values of v_type and series.
 
-    batch_generator(images, batch_size=64, image_size=(576, 384))
+    batch_generator(image_names, batch_size=64, image_size=(576, 384))
 
-            * images: Names of the images returned by image_name_generator
+            * image_names: Names of the images returned by image_name_generator
             * batch_size: Size of the batch. Default: 64
             * image_size: Size of the final batch images. Default: (576, 384)
 
         - returns a batch of images
 
-* Import the functions from python file `batch_processor.py`.
+* Import the functions from python file `batch_generator.py`.
 * First call the function **image_names_generator**.
 * Now call the function **batch_generator** on the returned value from **image_names_generator** function to get the batch of images.
 * This is done to save processing time by executing the task done by **image_names_generator** only once, and not everytime a batch is generated.
