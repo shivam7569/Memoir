@@ -73,7 +73,7 @@ def vc_crop2(image_array:ndarray):
 
 def vc_affine(image_array: ndarray):
 
-    return skimage.transform.AffineTransform(image_array)
+    return sk.transform.AffineTransform(image_array)
 
 def vc_contrast(image_array: ndarray):
 
@@ -81,6 +81,34 @@ def vc_contrast(image_array: ndarray):
     v_min, v_max = np.percentile(image_array, (0.2, 99.8))
     return exposure.rescale_intensity(image_array, in_range=(v_min, v_max))
 
+def horizontal_flip(image_array: ndarray):
+    # horizontal flip doesn't need skimage, it's easy as flipping the image array of pixels !
+    return image_array[:, ::-1]
+
+def vertical_flip(image_array: ndarray):
+    
+   return image_array[::-1, :]
+
+def scaling(image_array: ndarray):
+    
+    return sk.transform.rescale(image_aray, 0.25, anti_aliasing=False)
+
+def gamma_correction(image_array: ndarray):
+    
+    return exposure.adjust_gamma(original_image, gamma=0.4, gain=0.9)
+
+def resizing(image_array: ndarray):
+    
+    return resize(image_array, (image.shape[0] // 4, image.shape[1] // 4),
+                       anti_aliasing=True)
+def geoT(image_array: ndarray):
+    
+    src = np.array([[0, 0], [0, 50], [300, 50], [300, 0]])
+    dst = np.array([[155, 15], [65, 40], [260, 130], [360, 95]])
+
+    tform3 = tf.ProjectiveTransform()
+    tform3.estimate(src, dst)
+    return  tf.warp(image_array, tform3, output_shape=(50, 300))
 
 # dictionary of the transformations we defined earlier
 available_transformations = {
@@ -90,13 +118,20 @@ available_transformations = {
     'affine': vc_affine,
     'crop': vc_crop,
     'contrast': vc_contrast
+    'horizontal flip': horizontal_flip
+    'vertical flip': vertical_flip
+    'scale': scaling
+    'gamma trans': gamma_correction
+    'resize': resizing
+    'geometrical_transformation': geoT
+    
+    
 }
-
 
 folder_path = '/Desktop/videocolor'
 
 #no. of images we want 
-num_files_desired = 10 
+num_files_desired = input("no. of augmented images: ")
 
 # find all files paths from the folder
 images = [os.path.join(folder_path, f) for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
