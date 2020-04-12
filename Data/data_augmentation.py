@@ -8,6 +8,7 @@ from skimage import transform
 from skimage import util
 from skimage import io
 from skimage import data, exposure
+from skimage.util import crop
 
 #rotation
 
@@ -54,7 +55,19 @@ def vc_crop(image_array: ndarray):
     crops = [(c, 2*n_pixels-c) for c in np.random.randint(0, 2*n_pixels+1, [2])]
     # For channel dimension don't do any cropping
     crops += [(0,0)]
+
     return crop(padded, crops, copy=True) 
+#without adding padded pixels
+#crop
+# crop_width{sequence, int}: Number of values to remove from the edges of each axis. 
+# ((before_1, after_1), … (before_N, after_N)) specifies unique crop widths at the 
+# start and end of each axis. ((before, after),) specifies a fixed start and end 
+# crop for every axis. (n,) or n for integer n is a shortcut for before = after = n 
+# for all axes.
+def vc_crop2(image_array:ndarray):
+    
+    
+    return crop(A, ((50, 100), (50, 50), (0,0)), copy=False)
 
 #affine transformation
 
