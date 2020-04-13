@@ -1,160 +1,367 @@
 import os
 import random
-from scipy import ndarray
 
-# image processing library
-import skimage as sk
-from skimage import transform
-from skimage import util
-from skimage import io
-from skimage import data, exposure
-from skimage.util import crop
-
-#rotation
-
-def vc_rotation(image_array: ndarray):
-    # pick a random degree of rotation between 25% on the left and 25% on the right
-    random_degree = random.uniform(-25, 25)
-    return sk.transform.rotate(image_array, random_degree)
+import cv2 as cv
+import numpy as np
+from skimage import data, exposure, io
+from skimage import transform as sk_tf
+from skimage.util import crop, pad
 
 
-#noise
+def vc_affine(image_array: np.ndarray):
 
-def vc_noise(image_array: ndarray):
-    # add random noise to the image
-    return sk.util.random_noise(image_array)
+    # Function to apply affine transformation on a image.
 
-#brightness
+    '''
+    image_array: The image to apply transformation on.
+    '''
 
-def vc_brightness(image_array: ndarray):
+    ran_num = random.randint(0, 1) # To randomly apply rotation too.
+    ran_num = 0
 
-    gamma=1
-    gain=1
+    if ran_num == 0:
 
-    if is_random:
-        gamma = np.random.uniform(1-gamma, 1+gamma)
-    return exposure.adjust_gamma(image_array, gamma, gain)
-   
+        # Only image translation will take place.
 
-#crop
+        srcTri = np.array([[0, 0],
+                        [image_array.shape[1] - 1, 0],
+                        [0, image_array.shape[0] - 1]]).astype(np.float32)
+        
+        dstTri = np.array([[0, image_array.shape[1] * 0.2],
+                        [image_array.shape[1] * 0.9, image_array.shape[0] * 0.3],
+                        [image_array.shape[1] * 0.15, image_array.shape[0] * 0.7]]).astype(np.float32)
+        
+        warp_mat = cv.getAffineTransform(srcTri, dstTri)
+        warp_img = cv.warpAffine(image_array, warp_mat,
+                                (image_array.shape[1], image_array.shape[0]))
+        warp_img = cv.resize(warp_img, image_size)
 
-def vc_crop(image_array: ndarray):
-    """Pad image by n_pixels on each size, then take random crop of same
-    original size.
-    """
-    n_pixels=4
-    pad_mode='edge'
+        return warp_img
+
+    if ran_num == 1:
+
+        # Both rotation and translation will take place.
+
+        srcTri = np.array([[0, 0], [image_array.shape[1] - 1, 0],
+                           [0, image_array.shape[0] - 1]]).astype(np.float32)
+        dstTri = np.array([[0, image_array.shape[1]*0.33], [image_array.shape[1]*0.85, image_array.shape[0]
+                                                    * 0.25], [image_array.shape[1]*0.15, image_array.shape[0]*0.7]]).astype(np.float32)
+        warp_mat = cv.getAffineTransform(srcTri, dstTri)
+        warp_img = cv.warpAffine(image_array, warp_mat, (image_array.shape[1], image_array.shape[0]))
+        warp_img = cv.resize(warp_img, image_size)
+        
+        # Rotating the image after Warp
+        
+        center = (warp_img.shape[1]//2, warp_img.shape[0]//2)
+        angle = random.uniform(-90, 90)
+        scale = random.uniform(0, 0.5)
+        rot_mat = cv.getRotationMatrix2D(center, angle, scale)
+        warp_rotate_img = cv.warpAffine(warp_img, rot_mat,
+                                        (warp_img.shape[1], warp_img.shape[0]))
+
+        return warp_rotate_img
+
+def vc_rotation(image_array: np.ndarray, radius=None):
+
+    # Function to apply rotational transformation to an image.
+
+    '''
+    image_array: The image to apply transformation on.
+    radius: The radius of the circle (centered at the middly point of image) to pick the centre of rotation from.
+    '''
+
+    if radius == None:
+        radius = random.randint(0, 30)
+
+    x_centre = random.randint(
+        image_size[0]//2 - radius, image_size[0]//2 - radius)
+
+    y_centre = random.randint(
+        image_size[1]//2 - radius, image_size[1]//2 + radius)
+
+    angle = round(random.uniform(-180, 180), 2)
+
+    center = tuple(np.array([x_centre, y_centre]))
+    rot_img = cv.getRotationMatrix2D(center, angle, 1.0)
+    rot_img = cv.warpAffine(image_array, rot_img, image_size)
+    rot_img = cv.resize(rot_img, image_size)
+    
+    return rot_img
+
+def vc_noise(image_array: np.ndarray, noise_typ=None):
+
+    # Function to add noise to an image.
+
+    '''
+    image_array: The image to apply transformation on.
+    noise_type: Type of the noise to apply - gauss, salt&pepper, poisson, speckle.
+    '''
+
+    if noise_typ == None:
+
+        noise_typ = random.choice(['gauss', 's&p', 'poisson', 'speckle'])
+
+    if noise_typ == "gauss":
+
+        row, col, ch = image_array.shape
+        mean = random.uniform(0, 1)
+        var = random.uniform(0, 0.1)
+        sigma = var ** 0.5
+        gauss = np.random.normal(mean, sigma, (row, col, ch))
+        gauss = gauss.reshape(row, col, ch)
+        noisy = image_array + gauss
+        noisy_img = cv.resize(noisy, image_size)
+        
+        return noisy_img
+    
+    elif noise_typ == "s&p":
+        
+        row, col, ch = image_array.shape
+        s_vs_p = random.uniform(0, 1)
+        amount = random.uniform(0, 0.05)
+        out = np.copy(image_array)
+        
+        # Salt mode
+        num_salt = np.ceil(amount * image_array.size * s_vs_p)
+        coords = [np.random.randint(0, i - 1, int(num_salt))
+                  for i in image_array.shape]
+        out[coords] = 1
+
+        # Pepper mode
+        num_pepper = np.ceil(amount * image_array.size * (1. - s_vs_p))
+        coords = [np.random.randint(0, i - 1, int(num_pepper))
+                  for i in image_array.shape]
+        out[coords] = 0
+        noisy_img = cv.resize(out, image_size)
+        
+        return noisy_img
+    
+    elif noise_typ == "poisson":
+        
+        vals = len(np.unique(image_array))
+        vals = 2 ** np.ceil(np.log2(vals))
+        noisy = np.random.poisson(image_array * vals) / float(vals)
+        noisy_img = cv.resize(noisy, image_size)
+        
+        return noisy_img
+    
+    elif noise_typ == "speckle":
+        
+        factor = random.uniform(0, 0.4)
+        row, col, ch = image_array.shape
+        gauss = np.random.randn(row, col, ch)
+        gauss = gauss.reshape(row, col, ch)
+        noisy = image_array + image_array * gauss * factor
+        noisy_img = cv.resize(noisy, image_size)
+        
+        return noisy_img
+
+def vc_brightness(image_array: np.ndarray):
+
+    # Function to alter the brightness of an image.
+
+    '''
+    image_array: The image to apply transformation on.
+    '''
+
+    value = random.randint(0, 40)
+
+    hsv = cv.cvtColor(image_array, cv.COLOR_BGR2HSV)
+    h, s, v = cv.split(hsv)
+
+    lim = 255 - value
+    v[v > lim] = 255
+    v[v <= lim] += value
+
+    final_hsv = cv.merge((h, s, v))
+    img = cv.cvtColor(final_hsv, cv.COLOR_HSV2BGR)
+    bright_img = cv.resize(img, image_size)
+    
+    return bright_img
+
+def vc_crop(image_array: np.ndarray):
+
+    # Function to crop an image.
+    # Pad image by n_pixels on each size, then take random crop of same original size.
+    
+    '''
+    image_array: The image to apply transformation on.
+    '''
+
+    n_pixels = 40
+    
+    pad_mode = random.choice(['edge', 'constant', 'linear_ramp', 'maximum', 'mean', 'median',
+                              'minimum', 'reflect', 'symmetric', 'wrap', 'empty'])
+    
     assert len(image_array.shape) == 3
-    h, w, nc = image_array.shape
-
-    # First pad image by n_pixels on each side
-    padded = pad(image_array, [(n_pixels, n_pixels) for _ in range(2)] + [(0,0)],
-        mode=pad_mode)
-
-    # Then take a random crop of the original size
-    crops = [(c, 2*n_pixels-c) for c in np.random.randint(0, 2*n_pixels+1, [2])]
-    # For channel dimension don't do any cropping
-    crops += [(0,0)]
-
-    return crop(padded, crops, copy=True) 
-#without adding padded pixels
-#crop
-# crop_width{sequence, int}: Number of values to remove from the edges of each axis. 
-# ((before_1, after_1), … (before_N, after_N)) specifies unique crop widths at the 
-# start and end of each axis. ((before, after),) specifies a fixed start and end 
-# crop for every axis. (n,) or n for integer n is a shortcut for before = after = n 
-# for all axes.
-def vc_crop2(image_array:ndarray):
     
+    w, h, nc = image_array.shape
+
+    padded = pad(image_array, [(n_pixels, n_pixels) for _ in range(2)] + [(0, 0)],
+                 mode=pad_mode)
+
+    crops = [(c, 2*n_pixels-c)
+             for c in np.random.randint(0, 2*n_pixels+1, [2])]
     
-    return crop(A, ((50, 100), (50, 50), (0,0)), copy=False)
+    crops += [(0, 0)]
+    crop_ = crop(padded, crops, copy=True)
+    crop_out = cv.resize(crop_, image_size)
+    
+    return crop_out
 
-#affine transformation
+def vc_contrast(image_array: np.ndarray):
 
-def vc_affine(image_array: ndarray):
+    # Function to alter the contrast of an image.
 
-    return sk.transform.AffineTransform(image_array)
+    '''
+    image_array: The image to apply transformation on.
+    '''
 
-def vc_contrast(image_array: ndarray):
+    r_min, r_max = random.uniform(0, 40), random.uniform(60, 100)
+    
+    v_min, v_max = np.percentile(image_array, (r_min, r_max))
+    exp_img = exposure.rescale_intensity(image_array, in_range=(v_min, v_max))
+    exp_img = cv.resize(exp_img, image_size)
+    
+    return exp_img
 
 
-    v_min, v_max = np.percentile(image_array, (0.2, 99.8))
-    return exposure.rescale_intensity(image_array, in_range=(v_min, v_max))
+def horizontal_flip(image_array: np.ndarray):
 
-def horizontal_flip(image_array: ndarray):
-    # horizontal flip doesn't need skimage, it's easy as flipping the image array of pixels !
+    # Function to horizontally flip an image.
+
+    '''
+    image_array: The image to apply transformation on.
+    '''
+    
     return image_array[:, ::-1]
 
-def vertical_flip(image_array: ndarray):
-    
-   return image_array[::-1, :]
 
-def scaling(image_array: ndarray):
-    
-    return sk.transform.rescale(image_aray, 0.25, anti_aliasing=False)
+def vertical_flip(image_array: np.ndarray):
 
-def gamma_correction(image_array: ndarray):
-    
-    return exposure.adjust_gamma(original_image, gamma=0.4, gain=0.9)
+    # Function to vertically flip an image.
 
-def resizing(image_array: ndarray):
+    '''
+    image_array: The image to apply transformation on.
+    '''
+
+    return image_array[::-1, :]
+
+
+def scaling(image_array: np.ndarray):
     
-    return resize(image_array, (image.shape[0] // 4, image.shape[1] // 4),
-                       anti_aliasing=True)
-def geoT(image_array: ndarray):
+    # Function to scale an image.
+
+    '''
+    image_array: The image to apply transformation on.
+    '''
+
+    bool_ = random.choice([True, False])
     
+    r, g, b = image_array[:, :, 0], image_array[:, :, 1], image_array[:, :, 2]
+    
+    scaled_r = sk_tf.rescale(r, 0.25, anti_aliasing=bool_)
+    scaled_g = sk_tf.rescale(g, 0.25, anti_aliasing=bool_)
+    scaled_b = sk_tf.rescale(b, 0.25, anti_aliasing=bool_)
+    scaled_img = np.dstack((scaled_r, scaled_g, scaled_b))
+    scaled_img = cv.resize(scaled_img, image_size)
+    
+    return scaled_img
+
+
+def geoT(image_array: np.ndarray):
+
+    # Function to apply geometrical transformation on an image.
+
+    '''
+    image_array: The image to apply transformation on.
+    '''
+
     src = np.array([[0, 0], [0, 50], [300, 50], [300, 0]])
     dst = np.array([[155, 15], [65, 40], [260, 130], [360, 95]])
 
-    tform3 = tf.ProjectiveTransform()
+    tform3 = sk_tf.ProjectiveTransform()
     tform3.estimate(src, dst)
-    return  tf.warp(image_array, tform3, output_shape=(50, 300))
+    geoT_image = sk_tf.warp(image_array, tform3, output_shape=(50, 300))
+    geoT_image = cv.resize(geoT_image, image_size)
+    return geoT_image
+
+
+def available_transformations():
+
+    dict_ = avail_transf()
+    print('\n')
+    for key in dict_.keys():
+        print(key)
+    print('\n')
 
 # dictionary of the transformations we defined earlier
-available_transformations = {
-    'rotate': vc_rotation,
-    'noise': vc_noise,
-    'brightness': vc_multi,
-    'affine': vc_affine,
-    'crop': vc_crop,
-    'contrast': vc_contrast
-    'horizontal flip': horizontal_flip
-    'vertical flip': vertical_flip
-    'scale': scaling
-    'gamma trans': gamma_correction
-    'resize': resizing
-    'geometrical_transformation': geoT
+
+
+def avail_transf():
+    avail_transformations = {
+        'Rotation': vc_rotation,
+        'Affine': vc_affine,
+        'Noise': vc_noise,
+        'Brightness': vc_brightness,
+        'Crop': vc_crop,
+        'Contrast': vc_contrast,
+        'Horizontal_flip': horizontal_flip,
+        'Vertical_flip': vertical_flip,
+        'Scaling': scaling,
+        'Geometrical': geoT
+    }
+    return avail_transformations
+
+def data_aug(batch, size_of_aug=None, techniques='All'):
+
+    # Function to perform data augmentation.
+
+    '''
+    batch: The batch of images to perform augmentation on.
+    size_of_aug: The size of the augmented part of the returned batch after transformation:
+                if float: Take it as the fraction of the batch to augment.
+                if integer: Augment only that many images.
+                if None: Take 30% of the batch for augmentation.
+    '''
     
-    
-}
+    if size_of_aug == None:
+        size_of_aug = int(batch.shape[0] * 0.4)
 
-folder_path = '/Desktop/videocolor'
+    if isinstance(size_of_aug, float):
+        size_of_aug = int(batch.shape[0] * size_of_aug)
 
-#no. of images we want 
-num_files_desired = input("no. of augmented images: ")
+    avail_transformations = avail_transf()
 
-# find all files paths from the folder
-images = [os.path.join(folder_path, f) for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+    if techniques != 'All':
+        # print(keys)
+        for tech in list(avail_transformations):
 
-num_generated_files = 0
-while num_generated_files <= num_files_desired:
-    # random image from the folder
-    image_path = random.choice(images)
-    # read image as an two dimensional array of pixels
-    image_to_transform = sk.io.imread(image_path)
-    # random num of transformation to apply
-    num_transformations_to_apply = random.randint(1, len(available_transformations))
+            try:
+                if tech in techniques:
+                    continue
+                else:
+                    del avail_transformations[tech]
+            except KeyError as ex:
+                print("No such key: '%s'" % ex.message)
 
-    num_transformations = 0
-    transformed_image = None
-    while num_transformations <= num_transformations_to_apply:
-        # random transformation to apply for a single image
-        key = random.choice(list(available_transformations))
-        transformed_image = available_transformations[key](image_to_transform)
-        num_transformations += 1
+    global image_size
+    image_size = batch[0].shape[1::-1]
 
-new_file_path = '%s/augmented_image_%s.jpg' % (folder_path, num_generated_files)
+    num_generated_files = 1
+    while num_generated_files <= size_of_aug:
+        index = random.choice(range(batch.shape[0]))
+        image = batch[index]
+        num_transformations_to_apply = random.randint(
+            1, len(avail_transformations))
 
-# write image to the disk
-io.imsave(new_file_path, transformed_image)
-num_generated_files += 1
+        num_transformations = 0
+        while num_transformations <= num_transformations_to_apply:
+            key = random.choice(list(avail_transformations))
+            transformed_image = avail_transformations[key](image)
+            num_transformations += 1
+
+        batch[index] = transformed_image
+        num_generated_files += 1
+
+    return batch

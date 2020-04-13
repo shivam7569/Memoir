@@ -2,6 +2,7 @@ import os
 
 import cv2
 
+
 def process(vid_type, series, threshold):
 
     # Function to convert videos to frames.
@@ -177,10 +178,12 @@ def process_call():
                 continue
             process(v_t, sr, threshold)
 
-if os.path.exists(
-    "./Memoir_Videos"
-    ):
-    print('\nVideos Found. Starting the process. \n')
-    process_call()
-else:
-    raise OSError('Videos not found.\n')
+def convert_vid_to_frames():
+
+    if os.path.exists(
+        "./Memoir_Videos"
+        ):
+        print('\nVideos Found. Starting the process. \n')
+        process_call()
+    else:
+        raise OSError('Videos not found.\n')

@@ -3,21 +3,26 @@ import os
 import cv2
 import numpy as np
 
-vid_types = os.listdir(
-    '../Data_Memoir'
-    # To get the names of the types of videos in the Data_Memoir directory.
-)
-data_tree = {}  # To store the structure of Data_Memoir directory.
 
-for v_t in vid_types:
+def d_tree():
+    vid_types = os.listdir(
+        '../Data_Memoir'
+        # To get the names of the types of videos in the Data_Memoir directory.
+    )
+    
+    global data_tree
 
-    # Looping over each video type to get the structure upto Series level in 'data_tree' variable.
+    data_tree = {}  # To store the structure of Data_Memoir directory.
 
-    data_tree[v_t] = os.listdir(
-        os.path.join(
-            '../Data_Memoir', v_t
-            # Taking the video type as key and listing its content as the corresponding value.
-        ))
+    for v_t in vid_types:
+
+        # Looping over each video type to get the structure upto Series level in 'data_tree' variable.
+
+        data_tree[v_t] = os.listdir(
+            os.path.join(
+                '../Data_Memoir', v_t
+                # Taking the video type as key and listing its content as the corresponding value.
+            ))
 
 
 def find_key(sers):
@@ -77,6 +82,8 @@ def image_names_generator(v_type='Animated', series='All'):
     v_type: Type of the series (For now, 'Animated'? or 'Real'?) to make batch from.
     series: Name of the series to make batch from.
     '''
+
+    d_tree()
 
     if not isinstance(series, str) or series != 'All':
 
