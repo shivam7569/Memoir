@@ -10,13 +10,12 @@ PDF           = ../manual.pdf
 SOURCEDIR     = .
 BUILDDIR      = ../../memoir-docs
 
-
-latexpdf:
-    $(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(PDFBUILDDIR)/latex
-    @echo "Running LaTeX files through pdflatex..."
-    make -C $(PDFBUILDDIR)/latex all-pdf
-	cp $(PDFBUILDDIR)/latex/*.pdf $(PDF)
-    @echo "pdflatex finished; see $(PDF)"
+# latexpdf:
+#     $(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(PDFBUILDDIR)/latex
+#     @echo "Running LaTeX files through pdflatex..."
+#     make -C $(PDFBUILDDIR)/latex all-pdf
+# 	cp $(PDFBUILDDIR)/latex/*.pdf $(PDF)
+#     @echo "pdflatex finished; see $(PDF)"
 
 
 # Put it first so that "make" without argument is like "make help".
