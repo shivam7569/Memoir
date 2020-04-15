@@ -27,6 +27,7 @@ $ pip3 install tensorflow-gpu==1.14 (gpu)**
 ** You will need CUDA and cuDNN libraries to run tensorflow on GPU.
 
 [Building Tensorflow 1.14 with GPU Support and TensorRT on Ubuntu 16.04 LTS](https://medium.com/analytics-vidhya/building-tensorflow-1-14-with-gpu-support-and-tensorrt-on-ubuntu-16-04-84bbd356e03)
+
 [Building Tensorflow 2.0 with GPU support and TensorRT on Ubuntu 18.04 LTS](https://medium.com/analytics-vidhya/building-tensorflow-2-0-with-gpu-support-and-tensorrt-on-ubuntu-18-04-lts-part-1-e04ce41f885c)
 
 **For Conda environment:**
