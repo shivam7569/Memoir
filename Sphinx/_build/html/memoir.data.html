@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>memoir.data package &#8212; Memoir 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="memoir-data-package">
+<h1>memoir.data package<a class="headerlink" href="#memoir-data-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-memoir.data.batch_generator">
+<span id="memoir-data-batch-generator-module"></span><h2>memoir.data.batch_generator module<a class="headerlink" href="#module-memoir.data.batch_generator" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="memoir.data.batch_generator.batch_generator">
+<code class="sig-prename descclassname">memoir.data.batch_generator.</code><code class="sig-name descname">batch_generator</code><span class="sig-paren">(</span><em class="sig-param">image_names</em>, <em class="sig-param">batch_size=64</em>, <em class="sig-param">image_size=(576</em>, <em class="sig-param">384)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/batch_generator.html#batch_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.batch_generator.batch_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_names: List of names of images for a given video_type and series.
+batch_size: Size of the batch of images to make.
+image_size: Final size of the returned images.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.batch_generator.d_tree">
+<code class="sig-prename descclassname">memoir.data.batch_generator.</code><code class="sig-name descname">d_tree</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/batch_generator.html#d_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.batch_generator.d_tree" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.batch_generator.find_key">
+<code class="sig-prename descclassname">memoir.data.batch_generator.</code><code class="sig-name descname">find_key</code><span class="sig-paren">(</span><em class="sig-param">sers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/batch_generator.html#find_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.batch_generator.find_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>sers: The name of the series to find video type for.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.batch_generator.image_names_generator">
+<code class="sig-prename descclassname">memoir.data.batch_generator.</code><code class="sig-name descname">image_names_generator</code><span class="sig-paren">(</span><em class="sig-param">v_type='Animated'</em>, <em class="sig-param">series='All'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/batch_generator.html#image_names_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.batch_generator.image_names_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>v_type: Type of the series (For now, ‘Animated’? or ‘Real’?) to make batch from.
+series: Name of the series to make batch from.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.batch_generator.path_maker">
+<code class="sig-prename descclassname">memoir.data.batch_generator.</code><code class="sig-name descname">path_maker</code><span class="sig-paren">(</span><em class="sig-param">v_type</em>, <em class="sig-param">srs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/batch_generator.html#path_maker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.batch_generator.path_maker" title="Permalink to this definition">¶</a></dt>
+<dd><p>v_type: Name of the type of the series.
+srs: Name of the series.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-memoir.data.data_augmentation">
+<span id="memoir-data-data-augmentation-module"></span><h2>memoir.data.data_augmentation module<a class="headerlink" href="#module-memoir.data.data_augmentation" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="memoir.data.data_augmentation.avail_transf">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">avail_transf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#avail_transf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.avail_transf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.available_transformations">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">available_transformations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#available_transformations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.available_transformations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.data_aug">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">data_aug</code><span class="sig-paren">(</span><em class="sig-param">batch</em>, <em class="sig-param">size_of_aug=None</em>, <em class="sig-param">techniques='All'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#data_aug"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.data_aug" title="Permalink to this definition">¶</a></dt>
+<dd><p>batch: The batch of images to perform augmentation on.
+size_of_aug: The size of the augmented part of the returned batch after transformation:</p>
+<blockquote>
+<div><p>if float: Take it as the fraction of the batch to augment.
+if integer: Augment only that many images.
+if None: Take 30% of the batch for augmentation.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.geoT">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">geoT</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#geoT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.geoT" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.horizontal_flip">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">horizontal_flip</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#horizontal_flip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.horizontal_flip" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.pad">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">pad</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#memoir.data.data_augmentation.pad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.scaling">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">scaling</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#scaling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.scaling" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.vc_affine">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">vc_affine</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#vc_affine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.vc_affine" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.vc_brightness">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">vc_brightness</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#vc_brightness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.vc_brightness" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.vc_contrast">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">vc_contrast</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#vc_contrast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.vc_contrast" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.vc_crop">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">vc_crop</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#vc_crop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.vc_crop" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.vc_noise">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">vc_noise</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em>, <em class="sig-param">noise_typ=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#vc_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.vc_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.
+noise_type: Type of the noise to apply - gauss, salt&amp;pepper, poisson, speckle.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.vc_rotation">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">vc_rotation</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em>, <em class="sig-param">radius=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#vc_rotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.vc_rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.
+radius: The radius of the circle (centered at the middly point of image) to pick the centre of rotation from.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.data_augmentation.vertical_flip">
+<code class="sig-prename descclassname">memoir.data.data_augmentation.</code><code class="sig-name descname">vertical_flip</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/data_augmentation.html#vertical_flip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.data_augmentation.vertical_flip" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-memoir.data.video_to_frames">
+<span id="memoir-data-video-to-frames-module"></span><h2>memoir.data.video_to_frames module<a class="headerlink" href="#module-memoir.data.video_to_frames" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="memoir.data.video_to_frames.convert_vid_to_frames">
+<code class="sig-prename descclassname">memoir.data.video_to_frames.</code><code class="sig-name descname">convert_vid_to_frames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/video_to_frames.html#convert_vid_to_frames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.video_to_frames.convert_vid_to_frames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.video_to_frames.process">
+<code class="sig-prename descclassname">memoir.data.video_to_frames.</code><code class="sig-name descname">process</code><span class="sig-paren">(</span><em class="sig-param">vid_type</em>, <em class="sig-param">series</em>, <em class="sig-param">threshold</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/video_to_frames.html#process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.video_to_frames.process" title="Permalink to this definition">¶</a></dt>
+<dd><p># vid_type: Type of video: Real or Animated. For now we have only these options. But the code is ready for future additions.
+# series: Name of the series the video to be converted is from.
+# threshold: Number of frame to make for a particular series.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.data.video_to_frames.process_call">
+<code class="sig-prename descclassname">memoir.data.video_to_frames.</code><code class="sig-name descname">process_call</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/data/video_to_frames.html#process_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.data.video_to_frames.process_call" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-memoir.data">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-memoir.data" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Memoir</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Shivam Chaudhary.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/memoir.data.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
