@@ -5,12 +5,19 @@ import cv2
 
 def process(vid_type, series, threshold):
 
-    # Function to convert videos to frames.
     '''
+    Function to convert videos to frames.
 
-    # vid_type: Type of video: Real or Animated. For now we have only these options. But the code is ready for future additions.
-    # series: Name of the series the video to be converted is from.
-    # threshold: Number of frame to make for a particular series.
+    Args:
+        vid_type: Type of video: Real or Animated. For now we have only these options. But the code is ready for future additions.
+        series: Name of the series the video to be converted is from.
+        threshold: Number of frame to make for a particular series.
+
+    Returns:
+        Nothing so far.
+
+    Raises:
+        An exception, of course!
 
     '''
 
