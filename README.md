@@ -2,19 +2,19 @@
 
 ## Installation
 
-* Fork the repository.
+### Fork the repository.
 
-* Clone the forked repository.
+### Clone the forked repository.
 ```
 $ git clone <link_to_forked_repository>
 ```
 
-* Change the directory to Memoir.
+### Change the directory to Memoir.
 ```
 $ cd /path/to/Memoir/
 ```
 
-* Install the dependencies.
+### Install the dependencies.
 
 **For Python (virtual) environment:**
 ```
@@ -36,7 +36,7 @@ Either use `anaconda-navigator` to install the dependencies, including tensorflo
 ```
 conda env create -f requirements.yml
 ```
-* Install the package Memoir:
+### Install the package Memoir:
 
 **For both the environments.**
 ```
@@ -47,7 +47,7 @@ to install in editable (developer) mode:
 (Memoir)$ pip install -e .
 ```
 
-* To uninstall Memoir,
+### To uninstall Memoir,
 ```
 $ pip uninstall -y Memoir
 ```
