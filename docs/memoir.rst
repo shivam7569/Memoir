@@ -6,12 +6,12 @@ Subpackages
 
 .. toctree::
 
-    memoir.data
+   memoir.data
 
 Module contents
 ---------------
 
 .. automodule:: memoir
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
