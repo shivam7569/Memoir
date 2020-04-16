@@ -1,5 +1,13 @@
 ![](./images/Logo.jpg)
 
+## Dataset
+
+The videos used for generating the dataset are available [here](https://drive.google.com/open?id=1JgnDgGsDxWffh41VOcvSjVLrFJVxZdCp).
+
+## Documentation
+
+The documentation is available [here](https://andy6975.github.io/Memoir/).
+
 ## Installation
 
 ### Fork the repository.
