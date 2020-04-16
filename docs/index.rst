@@ -11,9 +11,11 @@ Welcome to Memoir's documentation!
    :caption: Contents:
 
    includeme
+   memoir.data
+   memoir.autoencoders
 
 Indices and tables
-==================
+====================
 
 * :ref:`genindex`
 * :ref:`modindex`

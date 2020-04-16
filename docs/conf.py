@@ -32,6 +32,7 @@
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 import sphinx_rtd_theme
+import stanford_theme
 
 extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.doctest',
@@ -93,6 +94,8 @@ todo_include_todos = False
 #
 # html_theme = 'alabaster'
 html_theme = "sphinx_rtd_theme"
+# html_theme = "stanford_theme"
+# html_theme_path = [stanford_theme.get_html_theme_path()]
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -173,3 +176,10 @@ texinfo_documents = [
      author, 'Memoir', 'One line description of project.',
      'Miscellaneous'),
 ]
+
+html_title = "Memoir 1.0.0"
+
+html_sidebars = {
+   '**': ['globaltoc.html', 'sourcelink.html', 'searchbox.html'],
+   'using/windows': ['windowssidebar.html', 'searchbox.html'],
+}
