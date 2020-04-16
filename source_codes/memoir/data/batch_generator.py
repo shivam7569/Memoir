@@ -1,12 +1,11 @@
 import os
-
+import json
 import cv2
 import numpy as np
 
-
 def d_tree():
     vid_types = os.listdir(
-        '../Data_Memoir'
+        paths['frame_dir']
         # To get the names of the types of videos in the Data_Memoir directory.
     )
     
@@ -20,7 +19,7 @@ def d_tree():
 
         data_tree[v_t] = os.listdir(
             os.path.join(
-                '../Data_Memoir', v_t
+                paths['frame_dir'], v_t
                 # Taking the video type as key and listing its content as the corresponding value.
             ))
 
@@ -46,15 +45,22 @@ def path_maker(v_type, srs):
 
     # Function to return the path of the frames for a given series.
 
-    path = os.path.join('../Data_Memoir', v_type, srs, 'Frames')
+    path = os.path.join(paths['frame_dir'], v_type, srs, 'Frames')
     return path
 
 
 def batch_generator(image_names, batch_size=64, image_size=(576, 384)):
+
     '''
-    image_names: List of names of images for a given video_type and series.
-    batch_size: Size of the batch of images to make.
-    image_size: Final size of the returned images.
+    Generates a batch of images. These images are the ones filtered out by `memoir.data.batch_generator.image_names_generator`.  
+    
+    Args:
+        image_names (list): List of names of images for a given video_type and series, as returned by `image_names_generator`.
+        batch_size (int): Size of the batch of images.
+        image_size (tuple): Size of the images in the batch.    
+    
+    Returns:
+        Returns a numpy array of images.
     '''
 
     # Function to create a batch of images from the list of names of images searched according to user query in batch_generator function
@@ -78,10 +84,28 @@ def batch_generator(image_names, batch_size=64, image_size=(576, 384)):
 
 
 def image_names_generator(v_type='Animated', series='All'):
+    
     '''
-    v_type: Type of the series (For now, 'Animated'? or 'Real'?) to make batch from.
-    series: Name of the series to make batch from.
+    This function is to find the names of the frames according to user query. These names will be used to generate a batch.
+    This approach helps in preventing memory overloading by not loading the frames but only their names in the memory. 
+    
+    Args:
+        v_type (str): Type of the series (For now, 'Animated'? or 'Real'?) to take frames for the batch from. Default: 'Animated'
+        series (str): The search can be made more specific if frames are needed only from one particular series. Default: 'All'
+    
+    Returns:
+        Returns a list of names of frames according to user query, to be used to generate batches.
+    
+    Raises:
+        KeyError: When the `series` entered is not present in `v_type`.
     '''
+
+    file_path = os.path.dirname(os.path.realpath(__file__)) 
+    os.chdir(file_path)
+
+    with open('./paths.json', 'r') as file:
+        global paths
+        paths = json.load(file)
 
     d_tree()
 
@@ -93,7 +117,7 @@ def image_names_generator(v_type='Animated', series='All'):
 
             # Checking whether entered name of the series belong to the entered type of video.
 
-            print('\nEntered series is either not present in the data or does not belong to entered video type. Terminating...')
+            raise KeyError('\nEntered series is either not present in the data or does not belong to entered video type. Terminating...')
             return None
 
     all_images = []

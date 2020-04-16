@@ -10,10 +10,11 @@ from skimage.util import crop, pad
 
 def vc_affine(image_array: np.ndarray):
 
-    # Function to apply affine transformation on a image.
-
     '''
-    image_array: The image to apply transformation on.
+    Function to apply affine transformation on an image.
+    
+    Args:
+        image_array: The image to apply affine transformation on.
     '''
 
     ran_num = random.randint(0, 1) # To randomly apply rotation too.
@@ -289,6 +290,22 @@ def geoT(image_array: np.ndarray):
 
 def available_transformations():
 
+    '''
+    Prints the transformations available for data augmentation.
+
+    Output:
+        * Rotation
+        * Affine
+        * Noise
+        * Brightness
+        * Crop
+        * Contrast
+        * Horizontal_flip
+        * Vertical_flip
+        * Scaling
+        * Geometrical
+    '''
+
     dict_ = avail_transf()
     print('\n')
     for key in dict_.keys():
@@ -315,14 +332,18 @@ def avail_transf():
 
 def data_aug(batch, size_of_aug=None, techniques='All'):
 
-    # Function to perform data augmentation.
-
     '''
-    batch: The batch of images to perform augmentation on.
-    size_of_aug: The size of the augmented part of the returned batch after transformation:
-                if float: Take it as the fraction of the batch to augment.
-                if integer: Augment only that many images.
-                if None: Take 30% of the batch for augmentation.
+    Function to perform data augmentation.
+
+    Args:
+        batch (ndarray): The batch of images to perform augmentation on. 
+        size_of_aug (float, int): The size of the augmented part of the returned batch after transformation.
+            If **float**, Take it as the fraction of the batch to augment.
+            If **integer**, Augment only that many images.
+            If **None**, Take 30% of the batch for augmentation.
+
+    Returns:
+        A numpy array of original and augmented images.
     '''
     
     if size_of_aug == None:
