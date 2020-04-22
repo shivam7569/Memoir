@@ -6,6 +6,8 @@ Subpackages
 
 .. toctree::
 
+   memoir.autoencoders
+   memoir.batch_preprocessing
    memoir.data
 
 Module contents

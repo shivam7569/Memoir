@@ -270,22 +270,10 @@ def geoT(image_array: np.ndarray):
     return geoT_image
 
 
-def available_transformations(return_dict=False):
+def available_transformations():
 
     """
     Prints the transformations available for data augmentation.
-
-    Output:
-        * Rotation
-        * Affine
-        * Noise
-        * Brightness
-        * Crop
-        * Contrast
-        * Horizontal_flip
-        * Vertical_flip
-        * Scaling
-        * Geometrical
     """
     if not return_dict:
         dict_ = avail_transf()
