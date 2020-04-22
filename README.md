@@ -4,6 +4,8 @@
 
 The videos used for generating the dataset are available [here](https://drive.google.com/open?id=1JgnDgGsDxWffh41VOcvSjVLrFJVxZdCp).
 
+Download the videos folder **Memoir_Videos** and put it either in the `source_codes` directory or where you want to store them. Doing the later requires updating the paths in ***paths.json*** file located in **data** submodule directory.
+
 ## Documentation
 
 The documentation is available [here](https://andy6975.github.io/Memoir/).
