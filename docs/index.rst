@@ -13,6 +13,7 @@ Welcome to Memoir's documentation!
    includeme
    memoir.data
    memoir.autoencoders
+   memoir.batch_preprocessing
 
 Indices and tables
 ====================

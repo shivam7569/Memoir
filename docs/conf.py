@@ -183,3 +183,12 @@ html_sidebars = {
    '**': ['globaltoc.html', 'sourcelink.html', 'searchbox.html'],
    'using/windows': ['windowssidebar.html', 'searchbox.html'],
 }
+
+import sys
+import os
+
+sys.path.insert(0, os.path.abspath('../source_codes'))
+sys.path.insert(0, os.path.abspath('../source_codes/memoir'))
+sys.path.insert(0, os.path.abspath('../source_codes/memoir/data'))
+sys.path.insert(0, os.path.abspath('../source_codes/memoir/autoencoders'))
+sys.path.insert(0, os.path.abspath('../source_codes/memoir/batch_preprocessing'))

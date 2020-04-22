@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np 
 import cv2 
 import json
-from channels import change_channel
+from memoir.batch_preprocessing.channels import change_channel
 import random
 import memoir.data.batch_generator as bg
 import os
