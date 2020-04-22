@@ -1,0 +1,97 @@
+{
+    "Layer_1": {
+        "units": 400,
+        "kernel_init": "glorot_uniform",
+        "bias_init": "glorot_normal",
+        "activation_fn": "tanh",
+        "use_dropout": "True",
+        "kernel_regularizer": "None",
+        "bias_regularizer": "None",
+        "use_batch_norm": "True",
+        "order": ["dense", "batch_norm", "activation"]
+    },
+
+    "Layer_2": {
+        "units": 200,
+        "kernel_init": "glorot_uniform",
+        "bias_init": "glorot_normal",
+        "activation_fn": "tanh",
+        "use_dropout": "True",
+        "kernel_regularizer": "None",
+        "bias_regularizer": "None",
+        "use_batch_norm": "True",
+        "order": ["dense", "batch_norm", "activation"]
+    },
+
+    "Layer_3": {
+        "units": 100,
+        "kernel_init": "glorot_uniform",
+        "bias_init": "glorot_normal",
+        "activation_fn": "tanh",
+        "use_dropout": "True",
+        "kernel_regularizer": "None",
+        "bias_regularizer": "None",
+        "use_batch_norm": "True",
+        "order": ["dense", "batch_norm", "activation"]
+    },
+
+    "Layer_4": {
+        "units": 3,
+        "kernel_init": "glorot_uniform",
+        "bias_init": "glorot_normal",
+        "activation_fn": "tanh",
+        "use_dropout": "True",
+        "kernel_regularizer": "None",
+        "bias_regularizer": "None",
+        "use_batch_norm": "True",
+        "order": ["dense", "batch_norm", "activation"]
+    },
+
+    "Layer_5": {
+        "units": 100,
+        "kernel_init": "glorot_uniform",
+        "bias_init": "glorot_normal",
+        "activation_fn": "tanh",
+        "use_dropout": "True",
+        "kernel_regularizer": "None",
+        "bias_regularizer": "None",
+        "use_batch_norm": "True",
+        "order": ["dense", "batch_norm", "activation"]
+    },
+
+    "Layer_6": {
+        "units": 100,
+        "kernel_init": "glorot_uniform",
+        "bias_init": "glorot_normal",
+        "activation_fn": "tanh",
+        "use_dropout": "True",
+        "kernel_regularizer": "None",
+        "bias_regularizer": "None",
+        "use_batch_norm": "True",
+        "order": ["dense", "batch_norm", "activation"]
+    },
+
+    "Layer_7": {
+        "units": 100,
+        "kernel_init": "glorot_uniform",
+        "bias_init": "glorot_uniform",
+        "activation_fn": "tanh",
+        "use_dropout": "True",
+        "kernel_regularizer": "None",
+        "bias_regularizer": "None",
+        "use_batch_norm": "True",
+        "order": ["dense", "batch_norm", "activation"]
+    },
+
+    "Layer_8": {
+        "units": "None",
+        "kernel_init": "glorot_uniform",
+        "bias_init": "glorot_normal",
+        "activation_fn": "tanh",
+        "use_dropout": "True",
+        "kernel_regularizer": "None",
+        "bias_regularizer": "None",
+        "use_batch_norm": "True",
+        "order": ["dense", "batch_norm", "activation"]
+    }
+}
