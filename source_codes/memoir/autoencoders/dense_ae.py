@@ -269,7 +269,3 @@ class Autoencoder:
                     
 
             writer.close()
-
-ae = Autoencoder()
-ae.build_graph(_print_=True)
-ae.fit()
