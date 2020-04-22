@@ -1,4 +1,4 @@
-name: TF_1.14
+name: Memoir
 channels:
   - defaults
   - conda-forge
