@@ -1,6 +1,7 @@
 ## How to use Autoencoder Class
 
 * Make sure you have dataset ready for the training before you implement this.
+* Update the `paths.json` file with the paths for the specified fields.
 * Design the required architecture in `dense_network.json` file. Here's an example for one layer:
 ```
 "Layer_1": {
