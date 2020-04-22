@@ -6,7 +6,7 @@ from memoir.batch_preprocessing.channels import change_channel
 import random
 import memoir.data.batch_generator as bg
 import os
-import dense_network_directory
+from memoir.autoencoders import dense_network_directory
 
 file_path = os.path.dirname(os.path.realpath(__file__)) 
 os.chdir(file_path)
