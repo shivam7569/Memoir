@@ -239,33 +239,33 @@ class Autoencoder:
 
                     print('Epoch: {}/{} - Batch: {}/{}        Loss: {}'.format(epoch, self.epochs, batch_num, batches, loss))
                 
-                if save_outputs:
-                
-                    if epoch % output_interval == 0:
-                        out_ = sess.run(self.layer_outputs[list(self.layer_outputs)[-1]], feed_dict=feed_dict_train)
-                        out_reshaped = np.reshape(out_, (self.batch_size, self.image_size[0], self.image_size[1], 3))
-                        out_reshaped = np.clip(out_reshaped * 255, 0, 255)
-                        out_reshaped = out_reshaped.astype(np.uint8)
-
-                        random_index = random.randint(0, self.batch_size - 1)
-                        input_sample = cv2.cvtColor(train_batch_gray[random_index], cv2.COLOR_GRAY2BGR)
-
-                        final_image = np.concatenate([input_sample, train_batch[random_index], out_reshaped[random_index]], axis=1)
-                        
-                        output_path = os.path.join(self.paths["model_output_paths"], self.name, 'OUTPUTS/')
-                        
-                        try:
-                            if not os.path.exists(output_path):
-                                os.mkdir(output_path)
-                        except OSError:
-                            raise OSError('Could not make directory to save model outputs.')
-
-                        cv2.imwrite(output_path + 'Output_epoch_' + str(epoch) + '_.jpg', final_image)
-                
-                if save_checkpoints:
-                    if epoch % interval_of_checkpoints == 0:
-                        checkpoint_path = os.path.join(self.paths['path_to_tensorflow_data'], self.name, 'Tensorflow/Checkpoints/')
-                        saver.save(sess, checkpoint_path + 'Epoch_{}'.format(epoch))
+                    if save_outputs:
                     
+                        if epoch % output_interval == 0 and batch_num == 1:
+                            out_ = sess.run(self.layer_outputs[list(self.layer_outputs)[-1]], feed_dict=feed_dict_train)
+                            out_reshaped = np.reshape(out_, (self.batch_size, self.image_size[0], self.image_size[1], 3))
+                            out_reshaped = np.clip(out_reshaped * 255, 0, 255)
+                            out_reshaped = out_reshaped.astype(np.uint8)
+
+                            random_index = random.randint(0, self.batch_size - 1)
+                            input_sample = cv2.cvtColor(train_batch_gray[random_index], cv2.COLOR_GRAY2BGR)
+
+                            final_image = np.concatenate([input_sample, train_batch[random_index], out_reshaped[random_index]], axis=1)
+                            
+                            output_path = os.path.join(self.paths["model_output_paths"], self.name, 'OUTPUTS/')
+                            
+                            try:
+                                if not os.path.exists(output_path):
+                                    os.mkdir(output_path)
+                            except OSError:
+                                raise OSError('Could not make directory to save model outputs.')
+
+                            cv2.imwrite(output_path + 'Output_epoch_' + str(epoch) + '_.jpg', final_image)
+                    
+                    if save_checkpoints:
+                        if epoch % interval_of_checkpoints == 0 and batch_num == 1:
+                            checkpoint_path = os.path.join(self.paths['path_to_tensorflow_data'], self.name, 'Tensorflow/Checkpoints/')
+                            saver.save(sess, checkpoint_path + 'Epoch_{}'.format(epoch))
+                        
 
             writer.close()
