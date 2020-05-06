@@ -10,13 +10,18 @@ def bgr2gray(batch: ndarray):
     Args:
         batch: A batch of images in "BGR" colorspace. 
     '''
+    if len(batch.shape) == 4:
 
-    new_batch = []
-    for img in batch:
-        _img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        new_batch.append(_img)
+        new_batch = []
+        for img in batch:
+            _img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            new_batch.append(_img)
 
-    return np.array(new_batch)
+        return np.array(new_batch)
+
+    elif len(batch.shape) == 3:
+
+        return cv2.cvtColor(batch, cv2.COLOR_BGR2GRAY)
 
 def bgr2hsv(batch: ndarray):
 
@@ -26,13 +31,18 @@ def bgr2hsv(batch: ndarray):
     Args:
         batch: A batch of images in "BGR" colorspace. 
     '''
+    if len(batch.shape) == 4:
 
-    new_batch = []
-    for img in batch:
-        _img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-        new_batch.append(_img)
+        new_batch = []
+        for img in batch:
+            _img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+            new_batch.append(_img)
 
-    return np.array(new_batch)
+        return np.array(new_batch)
+
+    elif len(batch.shape) == 3:
+
+        return cv2.cvtColor(batch, cv2.COLOR_BGR2HSV)
 
 def bgr2lab(batch: ndarray):
 
@@ -42,13 +52,18 @@ def bgr2lab(batch: ndarray):
     Args:
         batch: A batch of images in "BGR" colorspace. 
     '''
+    if len(batch.shape) == 4:
 
-    new_batch = []
-    for img in batch:
-        _img = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
-        new_batch.append(_img)
+        new_batch = []
+        for img in batch:
+            _img = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+            new_batch.append(_img)
 
-    return np.array(new_batch)
+        return np.array(new_batch)
+    
+    elif len(batch.shape) == 3:
+
+        return cv2.cvtColor(batch, cv2.COLOR_BGR2LAB)
 
 def bgr2luv(batch: ndarray):
 
@@ -58,13 +73,18 @@ def bgr2luv(batch: ndarray):
     Args:
         batch: A batch of images in "BGR" colorspace. 
     '''
+    if len(batch.shape) == 4:
 
-    new_batch = []
-    for img in batch:
-        _img = cv2.cvtColor(img, cv2.COLOR_BGR2LUV)
-        new_batch.append(_img)
+        new_batch = []
+        for img in batch:
+            _img = cv2.cvtColor(img, cv2.COLOR_BGR2LUV)
+            new_batch.append(_img)
 
-    return np.array(new_batch)
+        return np.array(new_batch)
+
+    elif len(batch.shape) == 3:
+
+        return cv2.cvtColor(batch, cv2.COLOR_BGR2LUV)
 
 def bgr2hls(batch: ndarray):
 
@@ -75,12 +95,18 @@ def bgr2hls(batch: ndarray):
         batch: A batch of images in "BGR" colorspace. 
     '''
 
-    new_batch = []
-    for img in batch:
-        _img = cv2.cvtColor(img, cv2.COLOR_BGR2HLS)
-        new_batch.append(_img)
+    if len(batch.shape) == 4:
 
-    return np.array(new_batch)
+        new_batch = []
+        for img in batch:
+            _img = cv2.cvtColor(img, cv2.COLOR_BGR2HLS)
+            new_batch.append(_img)
+
+        return np.array(new_batch)
+
+    elif len(batch.shape) == 3:
+
+        return cv2.cvtColor(batch, cv2.COLOR_BGR2HLS)
 
 def bgr2xyz(batch: ndarray):
 
@@ -91,12 +117,18 @@ def bgr2xyz(batch: ndarray):
         batch: A batch of images in "BGR" colorspace. 
     '''
 
-    new_batch = []
-    for img in batch:
-        _img = cv2.cvtColor(img, cv2.COLOR_BGR2XYZ)
-        new_batch.append(_img)
+    if len(batch.shape) == 4:
 
-    return np.array(new_batch)
+        new_batch = []
+        for img in batch:
+            _img = cv2.cvtColor(img, cv2.COLOR_BGR2XYZ)
+            new_batch.append(_img)
+
+        return np.array(new_batch)
+
+    elif len(batch.shape) == 3:
+
+        return cv2.cvtColor(batch, cv2.COLOR_BGR2XYZ)
 
 def bgr2ycr_cb(batch: ndarray):
 
@@ -107,12 +139,18 @@ def bgr2ycr_cb(batch: ndarray):
         batch: A batch of images in "BGR" colorspace. 
     '''
 
-    new_batch = []
-    for img in batch:
-        _img = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
-        new_batch.append(_img)
+    if len(batch.shape) == 4:
 
-    return np.array(new_batch)
+        new_batch = []
+        for img in batch:
+            _img = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
+            new_batch.append(_img)
+
+        return np.array(new_batch)
+
+    elif len(batch.shape) == 3:
+
+        return cv2.cvtColor(batch, cv2.COLOR_BGR2YCR_CB)
 
 def bgr2yuv(batch: ndarray):
 
@@ -123,12 +161,39 @@ def bgr2yuv(batch: ndarray):
         batch: A batch of images in "BGR" colorspace. 
     '''
 
-    new_batch = []
-    for img in batch:
-        _img = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
-        new_batch.append(_img)
+    if len(batch.shape) == 4:
 
-    return np.array(new_batch)
+        new_batch = []
+        for img in batch:
+            _img = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
+            new_batch.append(_img)
+
+        return np.array(new_batch)
+    
+    elif len(batch.shape) == 3:
+
+        return cv2.cvtColor(batch, cv2.COLOR_BGR2YUV)
+
+def gray2bgr(batch: ndarray):
+
+    '''
+    Function to convert the color space of a batch of images from "GRAY" to "BGR"
+
+    Args:
+        batch: A batch of images in "GRAY" colorspace. 
+    '''
+    if len(batch.shape) == 3:
+
+        new_batch = []
+        for img in batch:
+            _img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
+            new_batch.append(_img)
+    
+        return np.array(new_batch)
+    
+    elif len(batch.shape) == 2:
+
+        return cv2.cvtColor(batch, cv2.COLOR_GRAY2BGR)        
 
 def change_channel(batch: ndarray, channel='gray'):
 
@@ -152,12 +217,13 @@ def change_channel(batch: ndarray, channel='gray'):
         'hls': bgr2hls,
         'xyz': bgr2xyz,
         'ycr_cb': bgr2ycr_cb,
-        'yuv': bgr2yuv
+        'yuv': bgr2yuv,
+        'bgr': gray2bgr
     }
 
     return channel_dict[channel](batch)
 
-def available_channels(_return_=False):
+def available_channels(_return_=False, _print_=True):
 
     '''
     Function to display available color space to use.
@@ -166,11 +232,13 @@ def available_channels(_return_=False):
         _return_(bool): Whether to return a list of available color space to use,
     '''
 
-    avail_channels = ['gray', 'hsv', 'lab', 'luv', 'hls', 'xyz', 'ycr_cb', 'yuv']
+    avail_channels = ['gray', 'hsv', 'lab', 'luv', 'hls', 'xyz', 'ycr_cb', 'yuv', 'bgr']
 
-    print('\n')
-    for channel in avail_channels:
-        print(channel)
+    if _print_:
+        
+        print('\n')
+        for channel in avail_channels:
+            print(channel)
 
     if _return_:
         return avail_channels

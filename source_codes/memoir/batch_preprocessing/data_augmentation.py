@@ -3,10 +3,10 @@ import random
 
 import cv2 as cv
 import numpy as np
+import skimage
 from skimage import data, exposure, io
 from skimage import transform as sk_tf
 from skimage.util import crop, pad
-import skimage
 
 
 def vc_affine(image_array: np.ndarray):
@@ -275,14 +275,11 @@ def available_transformations():
     """
     Prints the transformations available for data augmentation.
     """
-    if not return_dict:
-        dict_ = avail_transf()
-        print("\n")
-        for key in dict_.keys():
-            print(key)
-        print("\n")
-    else:
-        return avail_transf()
+    dict_ = avail_transf()
+    print("\n")
+    for key in dict_.keys():
+        print(key)
+    print("\n")
 
 
 # dictionary of the transformations we defined earlier
@@ -312,9 +309,9 @@ def data_aug(batch, size_of_aug=None, techniques="All", num_of_trans=5, repeat=T
     Args:
         batch (ndarray): The batch of images to perform augmentation on. 
         size_of_aug (float, int): The size of the augmented part of the returned batch after transformation.
-            If **float**, Take it as the fraction of the batch to augment.
-            If **integer**, Augment only that many images.
-            If **None**, Take 30% of the batch for augmentation.
+            If **float**, takes it as the fraction of the batch to augment.
+            If **integer**, Augments only that many images.
+            If **None**, takes 30% of the batch for augmentation.
         techniques (str, list): List of transformations to apply in data augmentation. Default: 'All'
         num_of_trans (int): Number of transformation to apply on an image. Default: 5
         repeat (bool): Whether to repeat a transformation for a image or not. Default: True
