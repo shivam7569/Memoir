@@ -15,8 +15,16 @@ Welcome to Memoir's documentation!
    memoir.autoencoders
    memoir.batch_preprocessing
 
+Examples
+========
+
+.. toctree::
+   :maxdepth: 3
+
+   examples
+
 Indices and tables
-====================
+==================
 
 * :ref:`genindex`
 * :ref:`modindex`

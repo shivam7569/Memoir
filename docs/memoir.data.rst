@@ -8,7 +8,7 @@ memoir.data.batch\_generator module
    :members:
    :undoc-members:
    :show-inheritance:
-   :exclude-members: d_tree, path_maker, find_key,
+   :exclude-members: d_tree, path_maker, find_key
 
 memoir.data.video\_to\_frames module
 ------------------------------------

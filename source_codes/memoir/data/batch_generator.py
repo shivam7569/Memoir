@@ -1,7 +1,9 @@
-import os
 import json
+import os
+
 import cv2
 import numpy as np
+
 
 def d_tree():
     vid_types = os.listdir(
@@ -49,7 +51,7 @@ def path_maker(v_type, srs):
     return path
 
 
-def batch_generator(image_names, batch_size=64, image_size=(576, 384)):
+def batch_generator(image_names, batch_size=64, image_size=(320, 240)):
 
     '''
     Generates a batch of images. These images are the ones filtered out by `memoir.data.batch_generator.image_names_generator`.  
