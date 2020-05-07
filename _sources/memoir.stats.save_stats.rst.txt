@@ -1,0 +1,8 @@
+memoir.stats.save\_stats module
+===============================
+
+.. automodule:: memoir.stats.save_stats
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :exclude-members: file_reader

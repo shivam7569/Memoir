@@ -1,0 +1,7 @@
+memoir.dense\_autoencoders.test module
+======================================
+
+.. automodule:: memoir.dense_autoencoders.test
+   :members:
+   :undoc-members:
+   :show-inheritance:

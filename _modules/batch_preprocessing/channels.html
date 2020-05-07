@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>batch_preprocessing.channels &mdash; Memoir 1.0.0</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Memoir
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents (Subpackages):</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../memoir_subpackages/data/memoir.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../memoir_subpackages/batch_processing/memoir.batch_preprocessing.html">batch_preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../memoir_subpackages/stats/memoir.stats.html">stats</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_1.html">Generating frames from videos for dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_2.html">Generating a batch of images for training, testing, and validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_3.html">Getting the names of available transformation in data data_augmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_4.html">Data Augmentation of a batch of images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_5.html">Getting the names of available color spaces for color space transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_6.html">Change the color space of an image or a batch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_7.html">Feature Scaling of a batch of images</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Memoir</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>batch_preprocessing.channels</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for batch_preprocessing.channels</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>
+
+
+<div class="viewcode-block" id="bgr2gray"><a class="viewcode-back" href="../../batch_preprocessing.html#batch_preprocessing.channels.bgr2gray">[docs]</a><span class="k">def</span> <span class="nf">bgr2gray</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to convert the color space of a batch of images from &quot;BGR&quot; to &quot;GRAY&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        batch: A batch of images in &quot;BGR&quot; colorspace. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+
+        <span class="n">new_batch</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+            <span class="n">_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+            <span class="n">new_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_img</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_batch</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bgr2hsv"><a class="viewcode-back" href="../../batch_preprocessing.html#batch_preprocessing.channels.bgr2hsv">[docs]</a><span class="k">def</span> <span class="nf">bgr2hsv</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to convert the color space of a batch of images from &quot;BGR&quot; to &quot;HSV&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        batch: A batch of images in &quot;BGR&quot; colorspace. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+
+        <span class="n">new_batch</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+            <span class="n">_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HSV</span><span class="p">)</span>
+            <span class="n">new_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_img</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_batch</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HSV</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bgr2lab"><a class="viewcode-back" href="../../batch_preprocessing.html#batch_preprocessing.channels.bgr2lab">[docs]</a><span class="k">def</span> <span class="nf">bgr2lab</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to convert the color space of a batch of images from &quot;BGR&quot; to &quot;LAB&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        batch: A batch of images in &quot;BGR&quot; colorspace. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+
+        <span class="n">new_batch</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+            <span class="n">_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2LAB</span><span class="p">)</span>
+            <span class="n">new_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_img</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_batch</span><span class="p">)</span>
+    
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2LAB</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bgr2luv"><a class="viewcode-back" href="../../batch_preprocessing.html#batch_preprocessing.channels.bgr2luv">[docs]</a><span class="k">def</span> <span class="nf">bgr2luv</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to convert the color space of a batch of images from &quot;BGR&quot; to &quot;LUV&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        batch: A batch of images in &quot;BGR&quot; colorspace. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+
+        <span class="n">new_batch</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+            <span class="n">_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2LUV</span><span class="p">)</span>
+            <span class="n">new_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_img</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_batch</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2LUV</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bgr2hls"><a class="viewcode-back" href="../../batch_preprocessing.html#batch_preprocessing.channels.bgr2hls">[docs]</a><span class="k">def</span> <span class="nf">bgr2hls</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to convert the color space of a batch of images from &quot;BGR&quot; to &quot;HLS&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        batch: A batch of images in &quot;BGR&quot; colorspace. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+
+        <span class="n">new_batch</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+            <span class="n">_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HLS</span><span class="p">)</span>
+            <span class="n">new_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_img</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_batch</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HLS</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bgr2xyz"><a class="viewcode-back" href="../../batch_preprocessing.html#batch_preprocessing.channels.bgr2xyz">[docs]</a><span class="k">def</span> <span class="nf">bgr2xyz</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to convert the color space of a batch of images from &quot;BGR&quot; to &quot;XYZ&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        batch: A batch of images in &quot;BGR&quot; colorspace. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+
+        <span class="n">new_batch</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+            <span class="n">_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2XYZ</span><span class="p">)</span>
+            <span class="n">new_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_img</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_batch</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2XYZ</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bgr2ycr_cb"><a class="viewcode-back" href="../../batch_preprocessing.html#batch_preprocessing.channels.bgr2ycr_cb">[docs]</a><span class="k">def</span> <span class="nf">bgr2ycr_cb</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to convert the color space of a batch of images from &quot;BGR&quot; to &quot;YCR_CB&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        batch: A batch of images in &quot;BGR&quot; colorspace. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+
+        <span class="n">new_batch</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+            <span class="n">_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2YCR_CB</span><span class="p">)</span>
+            <span class="n">new_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_img</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_batch</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2YCR_CB</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bgr2yuv"><a class="viewcode-back" href="../../batch_preprocessing.html#batch_preprocessing.channels.bgr2yuv">[docs]</a><span class="k">def</span> <span class="nf">bgr2yuv</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to convert the color space of a batch of images from &quot;BGR&quot; to &quot;YUV&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        batch: A batch of images in &quot;BGR&quot; colorspace. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+
+        <span class="n">new_batch</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+            <span class="n">_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2YUV</span><span class="p">)</span>
+            <span class="n">new_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_img</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_batch</span><span class="p">)</span>
+    
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2YUV</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="gray2bgr"><a class="viewcode-back" href="../../batch_preprocessing.html#batch_preprocessing.channels.gray2bgr">[docs]</a><span class="k">def</span> <span class="nf">gray2bgr</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to convert the color space of a batch of images from &quot;GRAY&quot; to &quot;BGR&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        batch: A batch of images in &quot;GRAY&quot; colorspace. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+
+        <span class="n">new_batch</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+            <span class="n">_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2BGR</span><span class="p">)</span>
+            <span class="n">new_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_img</span><span class="p">)</span>
+    
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_batch</span><span class="p">)</span>
+    
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2BGR</span><span class="p">)</span>        </div>
+
+<div class="viewcode-block" id="change_channel"><a class="viewcode-back" href="../../batch_preprocessing.html#batch_preprocessing.channels.change_channel">[docs]</a><span class="k">def</span> <span class="nf">change_channel</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to convert the color space of a batch of images of an image from &quot;BGR&quot; to the user specified color space.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        batch(ndarray): A batch of images in &quot;BGR&quot; colorspace. </span>
+<span class="sd">        channel(str): The desired color space of images.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A batch of images with converted color space.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">channel_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;gray&#39;</span><span class="p">:</span> <span class="n">bgr2gray</span><span class="p">,</span>
+        <span class="s1">&#39;hsv&#39;</span><span class="p">:</span> <span class="n">bgr2hsv</span><span class="p">,</span>
+        <span class="s1">&#39;lab&#39;</span><span class="p">:</span> <span class="n">bgr2lab</span><span class="p">,</span>
+        <span class="s1">&#39;luv&#39;</span><span class="p">:</span> <span class="n">bgr2luv</span><span class="p">,</span>
+        <span class="s1">&#39;hls&#39;</span><span class="p">:</span> <span class="n">bgr2hls</span><span class="p">,</span>
+        <span class="s1">&#39;xyz&#39;</span><span class="p">:</span> <span class="n">bgr2xyz</span><span class="p">,</span>
+        <span class="s1">&#39;ycr_cb&#39;</span><span class="p">:</span> <span class="n">bgr2ycr_cb</span><span class="p">,</span>
+        <span class="s1">&#39;yuv&#39;</span><span class="p">:</span> <span class="n">bgr2yuv</span><span class="p">,</span>
+        <span class="s1">&#39;bgr&#39;</span><span class="p">:</span> <span class="n">gray2bgr</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">channel_dict</span><span class="p">[</span><span class="n">channel</span><span class="p">](</span><span class="n">batch</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="available_channels"><a class="viewcode-back" href="../../batch_preprocessing.html#batch_preprocessing.channels.available_channels">[docs]</a><span class="k">def</span> <span class="nf">available_channels</span><span class="p">(</span><span class="n">_return_</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">_print_</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to display available color space to use.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        _return_(bool): Whether to return a list of available color space to use,</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">avail_channels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="s1">&#39;hsv&#39;</span><span class="p">,</span> <span class="s1">&#39;lab&#39;</span><span class="p">,</span> <span class="s1">&#39;luv&#39;</span><span class="p">,</span> <span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="s1">&#39;xyz&#39;</span><span class="p">,</span> <span class="s1">&#39;ycr_cb&#39;</span><span class="p">,</span> <span class="s1">&#39;yuv&#39;</span><span class="p">,</span> <span class="s1">&#39;bgr&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">_print_</span><span class="p">:</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">avail_channels</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">_return_</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">avail_channels</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Shivam Chaudhary
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

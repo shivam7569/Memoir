@@ -1,0 +1,19 @@
+memoir package
+==============
+
+Subpackages
+-----------
+
+.. toctree::
+
+   memoir.batch_preprocessing
+   memoir.data
+   memoir.stats
+
+Module contents
+---------------
+
+.. automodule:: memoir
+   :members:
+   :undoc-members:
+   :show-inheritance:

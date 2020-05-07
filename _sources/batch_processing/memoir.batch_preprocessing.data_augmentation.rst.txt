@@ -1,0 +1,8 @@
+memoir.batch\_preprocessing.data\_augmentation module
+=====================================================
+
+.. automodule:: memoir.batch_preprocessing.data_augmentation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :exclude-members: avail_transf, geoT, horizontal_flip, vertical_flip, pad, scaling, vc_affine, vc_brightness, vc_contrast, vc_crop, vc_noise, vc_rotation

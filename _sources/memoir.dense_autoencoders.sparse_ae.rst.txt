@@ -1,0 +1,7 @@
+memoir.dense\_autoencoders.sparse\_ae module
+============================================
+
+.. automodule:: memoir.dense_autoencoders.sparse_ae
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>memoir.dense_autoencoders.dense_network_directory &mdash; Memoir 1.0.0</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Memoir
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents (Subpackages):</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../memoir_subpackages/data/memoir.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../memoir_subpackages/batch_processing/memoir.batch_preprocessing.html">batch_preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../memoir_subpackages/stats/memoir.stats.html">stats</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/example_1.html">Generating frames from videos for dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/example_2.html">Generating a batch of images for training, testing, and validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/example_3.html">Getting the names of available transformation in data data_augmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/example_4.html">Data Augmentation of a batch of images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/example_5.html">Getting the names of available color spaces for color space transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/example_6.html">Change the color space of an image or a batch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/example_7.html">Feature Scaling of a batch of images</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Memoir</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>memoir.dense_autoencoders.dense_network_directory</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for memoir.dense_autoencoders.dense_network_directory</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<div class="viewcode-block" id="avail_activations"><a class="viewcode-back" href="../../../memoir.dense_autoencoders.dense_network_directory.html#memoir.dense_autoencoders.dense_network_directory.avail_activations">[docs]</a><span class="k">def</span> <span class="nf">avail_activations</span><span class="p">(</span><span class="n">_return_</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Prints available activations for training.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        _return_(bool): Whether to returns the dictionary. Default: False </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">avail_acts</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;relu&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span>
+        <span class="s1">&#39;tanh&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">tanh</span><span class="p">,</span>
+        <span class="s1">&#39;sigmoid&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">,</span>
+        <span class="s1">&#39;lrelu&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">,</span>
+        <span class="s1">&#39;elu&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">elu</span><span class="p">,</span>
+        <span class="s1">&#39;exponential&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">exponential</span><span class="p">,</span>
+        <span class="s1">&#39;hard_sigmoid&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">hard_sigmoid</span><span class="p">,</span>
+        <span class="s1">&#39;linear&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">linear</span><span class="p">,</span>
+        <span class="s1">&#39;selu&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">selu</span><span class="p">,</span>
+        <span class="s1">&#39;softmax&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">,</span>
+        <span class="s1">&#39;softplus&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softplus</span><span class="p">,</span>
+        <span class="s1">&#39;softsign&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softsign</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_return_</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">acti</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">avail_acts</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">acti</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">avail_acts</span></div>
+
+
+<div class="viewcode-block" id="avail_initializers"><a class="viewcode-back" href="../../../memoir.dense_autoencoders.dense_network_directory.html#memoir.dense_autoencoders.dense_network_directory.avail_initializers">[docs]</a><span class="k">def</span> <span class="nf">avail_initializers</span><span class="p">(</span><span class="n">_return_</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Prints available initializers for training.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        _return_(bool): Whether to returns the dictionary. Default: False </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">avail_init</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;zeros&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">Zeros</span><span class="p">(),</span>
+        <span class="s1">&#39;ones&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">Ones</span><span class="p">(),</span>
+        <span class="s1">&#39;constant&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">Constant</span><span class="p">(),</span>
+        <span class="s1">&#39;random_normal&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">RandomNormal</span><span class="p">(),</span>
+        <span class="s1">&#39;random_uniform&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">RandomUniform</span><span class="p">(),</span>
+        <span class="s1">&#39;truncated_normal&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">TruncatedNormal</span><span class="p">(),</span>
+        <span class="s1">&#39;variance_scaling&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">VarianceScaling</span><span class="p">(),</span>
+        <span class="s1">&#39;orthogonal&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">Orthogonal</span><span class="p">(),</span>
+        <span class="s1">&#39;identity&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
+        <span class="s1">&#39;lecun_uniform&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">lecun_uniform</span><span class="p">(),</span>
+        <span class="s1">&#39;lecum_normal&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">lecun_normal</span><span class="p">(),</span>
+        <span class="s1">&#39;glorot_normal&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">glorot_normal</span><span class="p">(),</span>
+        <span class="s1">&#39;glorot_uniform&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">glorot_uniform</span><span class="p">(),</span>
+        <span class="s1">&#39;he_normal&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">he_normal</span><span class="p">(),</span>
+        <span class="s1">&#39;he_uniform&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">he_uniform</span><span class="p">(),</span>
+        <span class="s1">&#39;xavier&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">xavier_initializer</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_return_</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">init</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">avail_init</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">avail_init</span></div>
+
+
+<div class="viewcode-block" id="avail_optimizers"><a class="viewcode-back" href="../../../memoir.dense_autoencoders.dense_network_directory.html#memoir.dense_autoencoders.dense_network_directory.avail_optimizers">[docs]</a><span class="k">def</span> <span class="nf">avail_optimizers</span><span class="p">(</span><span class="n">_return_</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Prints available optimizers for training.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        _return_(bool): Whether to returns the dictionary. Default: False </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">avail_opts</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;ftrl&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">FtrlOptimizer</span><span class="p">,</span>
+        <span class="s1">&#39;adam&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">,</span>
+        <span class="s1">&#39;adagrad&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdagradOptimizer</span><span class="p">,</span>
+        <span class="s1">&#39;rmsprop&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">RMSPropOptimizer</span><span class="p">,</span>
+        <span class="s1">&#39;adadelta&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdadeltaOptimizer</span><span class="p">,</span>
+        <span class="s1">&#39;momentum&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">MomentumOptimizer</span><span class="p">,</span>
+        <span class="s1">&#39;adagradDA&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdagradDAOptimizer</span><span class="p">,</span>
+        <span class="s1">&#39;gradient_descent&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">,</span>
+        <span class="s1">&#39;proximal_adagrad&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">ProximalAdagradOptimizer</span><span class="p">,</span>
+        <span class="s1">&#39;proximal_gradient_descent&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">ProximalGradientDescentOptimizer</span>
+    <span class="p">}</span>
+    
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_return_</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">avail_opts</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">avail_opts</span></div>
+
+
+<div class="viewcode-block" id="avail_regularizers"><a class="viewcode-back" href="../../../memoir.dense_autoencoders.dense_network_directory.html#memoir.dense_autoencoders.dense_network_directory.avail_regularizers">[docs]</a><span class="k">def</span> <span class="nf">avail_regularizers</span><span class="p">(</span><span class="n">_return_</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Prints available regularizers for training.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        _return_(bool): Whether to returns the dictionary. Default: False </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">avail_regul</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;l1&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">regularizers</span><span class="o">.</span><span class="n">l1</span><span class="p">(),</span>
+        <span class="s1">&#39;l2&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">regularizers</span><span class="o">.</span><span class="n">l2</span><span class="p">(),</span>
+        <span class="s1">&#39;l1_l2&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">regularizers</span><span class="o">.</span><span class="n">l1_l2</span><span class="p">(),</span>
+        <span class="s2">&quot;None&quot;</span><span class="p">:</span> <span class="kc">None</span>
+    <span class="p">}</span>
+    
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_return_</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">reg</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">avail_regul</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">avail_regul</span></div>
+
+
+<div class="viewcode-block" id="avail_metrics"><a class="viewcode-back" href="../../../memoir.dense_autoencoders.dense_network_directory.html#memoir.dense_autoencoders.dense_network_directory.avail_metrics">[docs]</a><span class="k">def</span> <span class="nf">avail_metrics</span><span class="p">(</span><span class="n">_return_</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Prints available loss functions for training.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        _return_(bool): Whether to returns the dictionary. Default: False </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">avail_metrics</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;mse&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">,</span>
+        <span class="s1">&#39;mae&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">mean_absolute_error</span><span class="p">,</span>
+        <span class="s1">&#39;mape&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">mean_absolute_percentage_error</span><span class="p">,</span>
+        <span class="s1">&#39;msle&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">mean_squared_logarithmic_error</span><span class="p">,</span>
+        <span class="s1">&#39;squ_h&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">squared_hinge</span><span class="p">,</span>
+        <span class="s1">&#39;hinge&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">hinge</span><span class="p">,</span>
+        <span class="s1">&#39;logcosh&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">logcosh</span><span class="p">,</span>
+        <span class="s1">&#39;kld&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">kullback_leibler_divergence</span><span class="p">,</span>
+        <span class="s1">&#39;poisson&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">poisson</span><span class="p">,</span>
+        <span class="s1">&#39;co-prox&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">cosine_proximity</span><span class="p">,</span>
+        <span class="s1">&#39;cosine&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">cosine</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_return_</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">loss_fn</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">avail_metrics</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">loss_fn</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">avail_metrics</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Shivam Chaudhary
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

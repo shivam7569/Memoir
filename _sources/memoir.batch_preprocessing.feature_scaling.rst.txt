@@ -1,0 +1,7 @@
+memoir.batch\_preprocessing.feature\_scaling module
+===================================================
+
+.. automodule:: memoir.batch_preprocessing.feature_scaling
+   :members:
+   :undoc-members:
+   :show-inheritance:

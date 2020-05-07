@@ -1,0 +1,7 @@
+memoir.batch\_preprocessing.train\_test\_split module
+=====================================================
+
+.. automodule:: memoir.batch_preprocessing.train_test_split
+   :members:
+   :undoc-members:
+   :show-inheritance:

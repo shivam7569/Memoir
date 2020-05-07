@@ -1,7 +1,0 @@
-{
-    // "python.pythonPath": "/home/andy/tensorflow/tensorflow_pkg/TF_2.0/bin/python3",
-    "python.pythonPath": "/home/andy/anaconda3/envs/TF_1.14/bin/python",
-    "editor.fontFamily": "Fira Code",
-    "python.linting.enabled": false,
-    "restructuredtext.confPath": "${workspaceFolder}/docs"
-}

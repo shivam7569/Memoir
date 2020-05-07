@@ -1,0 +1,8 @@
+memoir.data.batch\_generator module
+===================================
+
+.. automodule:: memoir.data.batch_generator
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :exclude-members: d_tree, find_key, path_maker

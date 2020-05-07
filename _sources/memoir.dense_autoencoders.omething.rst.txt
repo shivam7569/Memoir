@@ -1,0 +1,7 @@
+memoir.dense\_autoencoders.omething module
+==========================================
+
+.. automodule:: memoir.dense_autoencoders.omething
+   :members:
+   :undoc-members:
+   :show-inheritance:

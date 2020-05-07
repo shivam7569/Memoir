@@ -1,0 +1,8 @@
+memoir.stats.mean module
+========================
+
+.. automodule:: memoir.stats.mean
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :exclude-members: file_reader

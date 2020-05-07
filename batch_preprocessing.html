@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>batch_preprocessing package &mdash; Memoir 1.0.0</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Memoir
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="memoir.data.html">memoir.data package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoir.batch_preprocessing.html">memoir.batch_preprocessing package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Generating frames from videos for dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#generating-a-batch-of-images-for-training-testing-and-validation">Generating a batch of images for training, testing, and validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#getting-the-names-of-available-transformation-in-data-data-augmentation">Getting the names of available transformation in data data_augmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#data-augmentation-of-a-batch-of-images">Data Augmentation of a batch of images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#getting-the-names-of-available-color-spaces-for-color-space-transformation">Getting the names of available color spaces for color space transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#change-the-color-space-of-an-image-or-a-batch">Change the color space of an image or a batch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#feature-scaling-of-a-batch-of-images">Feature Scaling of a batch of images</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Memoir</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>batch_preprocessing package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/batch_preprocessing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="batch-preprocessing-package">
+<h1>batch_preprocessing package<a class="headerlink" href="#batch-preprocessing-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-batch_preprocessing.channels">
+<span id="batch-preprocessing-channels-module"></span><h2>batch_preprocessing.channels module<a class="headerlink" href="#module-batch_preprocessing.channels" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="batch_preprocessing.channels.available_channels">
+<code class="sig-prename descclassname">batch_preprocessing.channels.</code><code class="sig-name descname">available_channels</code><span class="sig-paren">(</span><em class="sig-param">_return_=False</em>, <em class="sig-param">_print_=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/channels.html#available_channels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.channels.available_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to display available color space to use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>_return_</strong> (<em>bool</em>) – Whether to return a list of available color space to use,</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.channels.bgr2gray">
+<code class="sig-prename descclassname">batch_preprocessing.channels.</code><code class="sig-name descname">bgr2gray</code><span class="sig-paren">(</span><em class="sig-param">batch: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/channels.html#bgr2gray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.channels.bgr2gray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the color space of a batch of images from “BGR” to “GRAY”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>batch</strong> – A batch of images in “BGR” colorspace.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.channels.bgr2hls">
+<code class="sig-prename descclassname">batch_preprocessing.channels.</code><code class="sig-name descname">bgr2hls</code><span class="sig-paren">(</span><em class="sig-param">batch: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/channels.html#bgr2hls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.channels.bgr2hls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the color space of a batch of images from “BGR” to “HLS”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>batch</strong> – A batch of images in “BGR” colorspace.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.channels.bgr2hsv">
+<code class="sig-prename descclassname">batch_preprocessing.channels.</code><code class="sig-name descname">bgr2hsv</code><span class="sig-paren">(</span><em class="sig-param">batch: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/channels.html#bgr2hsv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.channels.bgr2hsv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the color space of a batch of images from “BGR” to “HSV”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>batch</strong> – A batch of images in “BGR” colorspace.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.channels.bgr2lab">
+<code class="sig-prename descclassname">batch_preprocessing.channels.</code><code class="sig-name descname">bgr2lab</code><span class="sig-paren">(</span><em class="sig-param">batch: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/channels.html#bgr2lab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.channels.bgr2lab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the color space of a batch of images from “BGR” to “LAB”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>batch</strong> – A batch of images in “BGR” colorspace.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.channels.bgr2luv">
+<code class="sig-prename descclassname">batch_preprocessing.channels.</code><code class="sig-name descname">bgr2luv</code><span class="sig-paren">(</span><em class="sig-param">batch: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/channels.html#bgr2luv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.channels.bgr2luv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the color space of a batch of images from “BGR” to “LUV”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>batch</strong> – A batch of images in “BGR” colorspace.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.channels.bgr2xyz">
+<code class="sig-prename descclassname">batch_preprocessing.channels.</code><code class="sig-name descname">bgr2xyz</code><span class="sig-paren">(</span><em class="sig-param">batch: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/channels.html#bgr2xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.channels.bgr2xyz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the color space of a batch of images from “BGR” to “XYZ”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>batch</strong> – A batch of images in “BGR” colorspace.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.channels.bgr2ycr_cb">
+<code class="sig-prename descclassname">batch_preprocessing.channels.</code><code class="sig-name descname">bgr2ycr_cb</code><span class="sig-paren">(</span><em class="sig-param">batch: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/channels.html#bgr2ycr_cb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.channels.bgr2ycr_cb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the color space of a batch of images from “BGR” to “YCR_CB”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>batch</strong> – A batch of images in “BGR” colorspace.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.channels.bgr2yuv">
+<code class="sig-prename descclassname">batch_preprocessing.channels.</code><code class="sig-name descname">bgr2yuv</code><span class="sig-paren">(</span><em class="sig-param">batch: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/channels.html#bgr2yuv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.channels.bgr2yuv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the color space of a batch of images from “BGR” to “YUV”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>batch</strong> – A batch of images in “BGR” colorspace.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.channels.change_channel">
+<code class="sig-prename descclassname">batch_preprocessing.channels.</code><code class="sig-name descname">change_channel</code><span class="sig-paren">(</span><em class="sig-param">batch: numpy.ndarray</em>, <em class="sig-param">channel='gray'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/channels.html#change_channel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.channels.change_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the color space of a batch of images of an image from “BGR” to the user specified color space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> (<em>ndarray</em>) – A batch of images in “BGR” colorspace.</p></li>
+<li><p><strong>channel</strong> (<em>str</em>) – The desired color space of images.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A batch of images with converted color space.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.channels.gray2bgr">
+<code class="sig-prename descclassname">batch_preprocessing.channels.</code><code class="sig-name descname">gray2bgr</code><span class="sig-paren">(</span><em class="sig-param">batch: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/channels.html#gray2bgr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.channels.gray2bgr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the color space of a batch of images from “GRAY” to “BGR”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>batch</strong> – A batch of images in “GRAY” colorspace.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-batch_preprocessing.data_augmentation">
+<span id="batch-preprocessing-data-augmentation-module"></span><h2>batch_preprocessing.data_augmentation module<a class="headerlink" href="#module-batch_preprocessing.data_augmentation" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.avail_transf">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">avail_transf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#avail_transf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.avail_transf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.available_transformations">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">available_transformations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#available_transformations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.available_transformations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the transformations available for data augmentation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.data_aug">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">data_aug</code><span class="sig-paren">(</span><em class="sig-param">batch</em>, <em class="sig-param">size_of_aug=None</em>, <em class="sig-param">techniques='All'</em>, <em class="sig-param">num_of_trans=5</em>, <em class="sig-param">repeat=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#data_aug"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.data_aug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to perform data augmentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> (<em>ndarray</em>) – The batch of images to perform augmentation on.</p></li>
+<li><p><strong>size_of_aug</strong> (<em>float</em><em>, </em><em>int</em>) – The size of the augmented part of the returned batch after transformation.
+If <strong>float</strong>, takes it as the fraction of the batch to augment.
+If <strong>integer</strong>, Augments only that many images.
+If <strong>None</strong>, takes 30% of the batch for augmentation.</p></li>
+<li><p><strong>techniques</strong> (<em>str</em><em>, </em><em>list</em>) – List of transformations to apply in data augmentation. Default: ‘All’</p></li>
+<li><p><strong>num_of_trans</strong> (<em>int</em>) – Number of transformation to apply on an image. Default: 5</p></li>
+<li><p><strong>repeat</strong> (<em>bool</em>) – Whether to repeat a transformation for a image or not. Default: True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A numpy array of original and augmented images.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ValueError</strong> – When the entered values does not match the d-types of respective parameter.</p></li>
+<li><p><strong>ValueError</strong> – When <cite>repeat=False</cite>, and <cite>num_of_trans</cite> is more than the number of available transformations.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.geoT">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">geoT</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#geoT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.geoT" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.horizontal_flip">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">horizontal_flip</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#horizontal_flip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.horizontal_flip" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.pad">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">pad</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#batch_preprocessing.data_augmentation.pad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.scaling">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">scaling</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#scaling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.scaling" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.vc_affine">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">vc_affine</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#vc_affine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.vc_affine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to apply affine transformation on an image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image_array</strong> – The image to apply affine transformation on.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.vc_brightness">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">vc_brightness</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#vc_brightness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.vc_brightness" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.vc_contrast">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">vc_contrast</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#vc_contrast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.vc_contrast" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.vc_crop">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">vc_crop</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#vc_crop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.vc_crop" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.vc_noise">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">vc_noise</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em>, <em class="sig-param">noise_typ=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#vc_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.vc_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.
+noise_type: Type of the noise to apply - gauss, salt&amp;pepper, poisson, speckle.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.vc_rotation">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">vc_rotation</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em>, <em class="sig-param">radius=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#vc_rotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.vc_rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.
+radius: The radius of the circle (centered at the middly point of image) to pick the centre of rotation from.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="batch_preprocessing.data_augmentation.vertical_flip">
+<code class="sig-prename descclassname">batch_preprocessing.data_augmentation.</code><code class="sig-name descname">vertical_flip</code><span class="sig-paren">(</span><em class="sig-param">image_array: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/batch_preprocessing/data_augmentation.html#vertical_flip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#batch_preprocessing.data_augmentation.vertical_flip" title="Permalink to this definition">¶</a></dt>
+<dd><p>image_array: The image to apply transformation on.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-batch_preprocessing">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-batch_preprocessing" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Shivam Chaudhary
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

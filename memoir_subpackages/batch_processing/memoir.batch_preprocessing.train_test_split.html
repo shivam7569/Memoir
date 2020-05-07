@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>train_test_split &mdash; Memoir 1.0.0</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="stats" href="../stats/memoir.stats.html" />
+    <link rel="prev" title="feature_scaling" href="memoir.batch_preprocessing.feature_scaling.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Memoir
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents (Subpackages):</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../data/memoir.data.html">data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="memoir.batch_preprocessing.html">batch_preprocessing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="memoir.batch_preprocessing.channels.html">channels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memoir.batch_preprocessing.data_augmentation.html">data_augmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memoir.batch_preprocessing.feature_scaling.html">feature_scaling</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">train_test_split</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../stats/memoir.stats.html">stats</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_1.html">Generating frames from videos for dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_2.html">Generating a batch of images for training, testing, and validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_3.html">Getting the names of available transformation in data data_augmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_4.html">Data Augmentation of a batch of images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_5.html">Getting the names of available color spaces for color space transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_6.html">Change the color space of an image or a batch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example_7.html">Feature Scaling of a batch of images</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Memoir</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="memoir.batch_preprocessing.html">batch_preprocessing</a> &raquo;</li>
+        
+      <li>train_test_split</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/memoir_subpackages/batch_processing/memoir.batch_preprocessing.train_test_split.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-memoir.batch_preprocessing.train_test_split">
+<span id="train-test-split"></span><h1>train_test_split<a class="headerlink" href="#module-memoir.batch_preprocessing.train_test_split" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="memoir.batch_preprocessing.train_test_split.train_test_val">
+<code class="sig-prename descclassname">memoir.batch_preprocessing.train_test_split.</code><code class="sig-name descname">train_test_val</code><span class="sig-paren">(</span><em class="sig-param">image_names: list</em>, <em class="sig-param">test_fraction: Union[float</em>, <em class="sig-param">int] = 0.25</em>, <em class="sig-param">val_data: bool = True</em>, <em class="sig-param">val_fraction: float = 0.1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/memoir/batch_preprocessing/train_test_split.html#train_test_val"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.batch_preprocessing.train_test_split.train_test_val" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to split the dataset into train, test, and validation sets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_names</strong> (<em>list</em>) – Dataset to be used for training.</p></li>
+<li><p><strong>test_fraction</strong> (<em>int</em><em>, </em><em>float</em>) – Size of the test set. Default: 0.25
+If <strong>float</strong>, takes it as the fraction of the whole dataset.
+If <strong>integer</strong>, takes only that many images in the test set from the whole dataset.</p></li>
+<li><p><strong>val_data</strong> (<em>bool</em>) – Whether to make validation set or not.</p></li>
+<li><p><strong>val_fraction</strong> (<em>float</em><em>, </em><em>int</em>) – Size of the validation set. Default: 0.1
+If <strong>float</strong>, takes it as the fraction of the train dataset.
+If <strong>integer</strong>, takes only that many images in the validation set from the train set.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Train, test and validation (if asked) datasets.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">memoir.batch_preprocessing</span> <span class="kn">import</span> <span class="n">train_test_split</span> <span class="k">as</span> <span class="n">tts</span>
+
+<span class="n">img_names</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">list_of_names_of_images_in_the_concerned_dataset</span><span class="o">&gt;</span>
+
+<span class="n">train_images</span><span class="p">,</span> <span class="n">test_images</span><span class="p">,</span> <span class="n">val_images</span> <span class="o">=</span> <span class="n">tts</span><span class="o">.</span><span class="n">train_test_val</span><span class="p">(</span>
+                                                      <span class="n">image_names</span><span class="o">=</span><span class="n">img_names</span><span class="p">,</span>
+                                                      <span class="n">test_fraction</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+                                                      <span class="n">val_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                      <span class="n">val_fraction</span><span class="o">=</span><span class="mf">0.1</span>
+                                                      <span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../stats/memoir.stats.html" class="btn btn-neutral float-right" title="stats" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="memoir.batch_preprocessing.feature_scaling.html" class="btn btn-neutral float-left" title="feature_scaling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Shivam Chaudhary
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+memoir.stats.std module
+=======================
+
+.. automodule:: memoir.stats.std
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :exclude-members: file_reader

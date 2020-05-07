@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>memoir.batch_preprocessing.channels module &mdash; Memoir 1.0.0</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="memoir.batch_preprocessing.data_augmentation module" href="memoir.batch_preprocessing.data_augmentation.html" />
+    <link rel="prev" title="memoir.batch_preprocessing package" href="memoir.batch_preprocessing.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Memoir
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="memoir.data.html">memoir.data package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="memoir.batch_preprocessing.html">memoir.batch_preprocessing package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="memoir.batch_preprocessing.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">memoir.batch_preprocessing.channels module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memoir.batch_preprocessing.data_augmentation.html">memoir.batch_preprocessing.data_augmentation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memoir.batch_preprocessing.feature_scaling.html">memoir.batch_preprocessing.feature_scaling module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memoir.batch_preprocessing.train_test_split.html">memoir.batch_preprocessing.train_test_split module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="memoir.batch_preprocessing.html#module-memoir.batch_preprocessing">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Generating frames from videos for dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#generating-a-batch-of-images-for-training-testing-and-validation">Generating a batch of images for training, testing, and validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#getting-the-names-of-available-transformation-in-data-data-augmentation">Getting the names of available transformation in data data_augmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#data-augmentation-of-a-batch-of-images">Data Augmentation of a batch of images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#getting-the-names-of-available-color-spaces-for-color-space-transformation">Getting the names of available color spaces for color space transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#change-the-color-space-of-an-image-or-a-batch">Change the color space of an image or a batch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#feature-scaling-of-a-batch-of-images">Feature Scaling of a batch of images</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Memoir</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="memoir.batch_preprocessing.html">memoir.batch_preprocessing package</a> &raquo;</li>
+        
+      <li>memoir.batch_preprocessing.channels module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/memoir.batch_preprocessing.channels.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-memoir.batch_preprocessing.channels">
+<span id="memoir-batch-preprocessing-channels-module"></span><h1>memoir.batch_preprocessing.channels module<a class="headerlink" href="#module-memoir.batch_preprocessing.channels" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="memoir.batch_preprocessing.channels.available_channels">
+<code class="sig-prename descclassname">memoir.batch_preprocessing.channels.</code><code class="sig-name descname">available_channels</code><span class="sig-paren">(</span><em class="sig-param">_return_=False</em>, <em class="sig-param">_print_=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/batch_preprocessing/channels.html#available_channels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.batch_preprocessing.channels.available_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to display available color space to use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>_return_</strong> (<em>bool</em>) – Whether to return a list of available color space to use,</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="memoir.batch_preprocessing.channels.change_channel">
+<code class="sig-prename descclassname">memoir.batch_preprocessing.channels.</code><code class="sig-name descname">change_channel</code><span class="sig-paren">(</span><em class="sig-param">batch: numpy.ndarray</em>, <em class="sig-param">channel='gray'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memoir/batch_preprocessing/channels.html#change_channel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memoir.batch_preprocessing.channels.change_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the color space of a batch of images of an image from “BGR” to the user specified color space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> (<em>ndarray</em>) – A batch of images in “BGR” colorspace.</p></li>
+<li><p><strong>channel</strong> (<em>str</em>) – The desired color space of images.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A batch of images with converted color space.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="memoir.batch_preprocessing.data_augmentation.html" class="btn btn-neutral float-right" title="memoir.batch_preprocessing.data_augmentation module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="memoir.batch_preprocessing.html" class="btn btn-neutral float-left" title="memoir.batch_preprocessing package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Shivam Chaudhary
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

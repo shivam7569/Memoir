@@ -1,0 +1,8 @@
+memoir.data.video\_to\_frames module
+====================================
+
+.. automodule:: memoir.data.video_to_frames
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :exclude-members: vid_to_frames, process_call

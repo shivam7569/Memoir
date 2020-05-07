@@ -1,0 +1,7 @@
+memoir.dense\_autoencoders.decorators module
+============================================
+
+.. automodule:: memoir.dense_autoencoders.decorators
+   :members:
+   :undoc-members:
+   :show-inheritance:
