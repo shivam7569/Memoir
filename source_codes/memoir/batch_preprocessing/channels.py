@@ -1,6 +1,7 @@
 import cv2
-import numpy as np 
+import numpy as np
 from numpy import ndarray
+
 
 def bgr2gray(batch: ndarray):
 
@@ -198,7 +199,7 @@ def gray2bgr(batch: ndarray):
 def change_channel(batch: ndarray, channel='gray'):
 
     '''
-    Function to convert the color space of a batch of images from "BGR" to the user specified color space.
+    Function to convert the color space of a batch of images of an image from "BGR" to the user specified color space.
 
     Args:
         batch(ndarray): A batch of images in "BGR" colorspace. 

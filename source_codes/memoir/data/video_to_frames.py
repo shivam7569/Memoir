@@ -3,6 +3,7 @@ import os
 
 import cv2
 
+
 def vid_to_frames(vid_type, series, threshold):
 
     try:
@@ -184,7 +185,7 @@ def convert_vid_to_frames(vid_type="All", series='All', threshold=50000):
     file_path = os.path.dirname(os.path.realpath(__file__)) 
     os.chdir(file_path)
 
-    with open('./paths.json', 'r') as file:
+    with open('../../../paths.json', 'r') as file:
         global paths
         paths = json.load(file)
 

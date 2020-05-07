@@ -8,12 +8,11 @@ Welcome to Memoir's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Contents (Subpackages):
 
-   includeme
-   memoir.data
-   memoir.autoencoders
-   memoir.batch_preprocessing
+   ./memoir_subpackages/data/memoir.data
+   ./memoir_subpackages/batch_processing/memoir.batch_preprocessing
+   ./memoir_subpackages/stats/memoir.stats
 
 Examples
 ========
@@ -21,7 +20,13 @@ Examples
 .. toctree::
    :maxdepth: 3
 
-   examples
+   ./examples/example_1
+   ./examples/example_2
+   ./examples/example_3
+   ./examples/example_4
+   ./examples/example_5
+   ./examples/example_6
+   ./examples/example_7
 
 Indices and tables
 ==================

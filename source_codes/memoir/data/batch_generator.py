@@ -105,7 +105,7 @@ def image_names_generator(v_type='Animated', series='All'):
     file_path = os.path.dirname(os.path.realpath(__file__)) 
     os.chdir(file_path)
 
-    with open('./paths.json', 'r') as file:
+    with open('../../../paths.json', 'r') as file:
         global paths
         paths = json.load(file)
 
